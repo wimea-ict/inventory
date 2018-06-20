@@ -1,0 +1,44 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+require_once('page-header.php');
+?>
+
+<div class="row">
+    <div class="col-lg-8">
+        <?php if(isset($_SESSION['message'])): ?>
+            <div class="alert alert-<?= $_SESSION['message_class']; ?>"><?= $_SESSION['message']; ?></div>
+        <?php
+            unset($_SESSION['message']);
+            endif; 
+        ?>
+
+        <div class="panel panel-default">
+            <div class="panel-heading"><?= $panel_heading; ?></div>
+            <div class="panel-body">
+                <form action="" method="post">
+                    <div class="form-group">
+                        <label for="item-name">Item Name</label>
+                        <input type="text" name="item_name" id="item-name" class="form-control"
+                            <?= isset($item) ? " value='" . ucwords($item['name']) . "'" : '' ?>>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select name="category" id="category" class="form-control">
+                            <?php foreach ($categories as $category): ?>
+                                <option value="<?= $category['id']; ?>" <?= (isset($item) && ($item['category_id'] == $category['id'])) ? ' selected' : '';?>>
+                                    <?= ucwords($category['name']); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <?php if (isset($item)): ?>
+                        <input type="hidden" name="item_id" value="<?= $item['id']; ?>">
+                    <?php endif; ?>
+                    <input type="submit" value="Submit" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

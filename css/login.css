@@ -1,0 +1,23 @@
+html,body {
+    height: 100%;
+}
+body {
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-align: center;
+    -ms-flex-pack: center;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    background-color: teal;
+    background: url(images/sky.jpeg) no-repeat center center fixed;
+    background-size: cover;
+}
+form {
+    width: 100%;
+    max-width: 350px;
+    padding: 15px;
+    margin: 0 auto;
+    background-color: #fff;
+}

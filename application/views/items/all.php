@@ -7,7 +7,10 @@ require_once('page-header.php');
 <div class="row">
     <div class="col-lg-12">
         <?php if(isset($_SESSION['message'])): ?>
-            <div class="alert alert-<?= $_SESSION['message_class']; ?>"><?= $_SESSION['message']; ?></div>
+            <div class="alert alert-dismissable alert-<?= $_SESSION['message_class']; ?>">
+                <button type="button" data-dismiss="alert" aria-hidden="true" class="close">&times;</button>
+                <?= $_SESSION['message']; ?>
+            </div>
         <?php
             unset($_SESSION['message']);
             endif; 

@@ -6,7 +6,7 @@ class Categories_model extends CI_Model {
         parent::__construct();
     }
 
-    public function get($category_id) {
+    public function get_category($category_id) {
         $sql = sprintf("SELECT * FROM categories WHERE id = %d", $category_id);
         $query = $this->db->query($sql);
         if ($query->num_rows() == 0) {
@@ -17,7 +17,7 @@ class Categories_model extends CI_Model {
     }
 
     public function get_categories() {
-        $sql = sprintf("SELECT * FROM categories ORDER BY date_entered DESC");
+        $sql = sprintf("SELECT * FROM categories ORDER BY date_updated DESC");
         $query = $this->db->query($sql);
         if ($query->num_rows() == 0) {
             return [];
@@ -43,10 +43,18 @@ class Categories_model extends CI_Model {
         return $categories;
     }
 
-    public function create($category_name) {
+    public function create_category($category_name) {
         $sql = sprintf("INSERT INTO categories (name) VALUES (%s)",
                         $this->db->escape($category_name));
         $this->db->query($sql);
+    }
+
+    public function update_category($category_id, $category_name) {
+        $sql = sprintf("UPDATE categories SET name = %s WHERE id = %d",
+                        $this->db->escape($category_name), $category_id);
+        $this->db->query($sql);
+
+        return $this->db->affected_rows();
     }
 }
 ?>

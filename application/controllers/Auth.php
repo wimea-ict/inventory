@@ -40,11 +40,15 @@ class Auth extends CI_Controller {
             }
         }
 
+        if ($this->session->has_userdata('user')) {
+            redirect(base_url("admin/dashboard"));
+        }
         $this->load->view('login');
     }
 
     public function logout() {
-        
+        $this->session->unset_userdata('user');
+        redirect(base_url("auth/login"));
     }
 }
 ?>

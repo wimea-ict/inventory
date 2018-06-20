@@ -11,7 +11,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Dashboard</title>
+        <title><?= $title; ?></title>
 
         <!-- Bootstrap Core CSS -->
         <link href="<?= base_url("assets/vendor/bootstrap/css/bootstrap.min.css"); ?>" rel="stylesheet">
@@ -44,5 +44,3 @@
     </head>
 
     <body>
-
-        <div id="wrapper">

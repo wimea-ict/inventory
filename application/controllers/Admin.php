@@ -7,10 +7,12 @@ class Admin extends CI_Controller {
     }
 
     public function dashboard() {
-        $this->load->view('partials/header');
-        $this->load->view('partials/navigation');
-        $this->load->view('dashboard');
-        $this->load->view('partials/footer');
+        $data = [];
+        $content = $this->load->view('dashboard', $data, TRUE);
+        $this->load->view('main', [
+            'title' => 'Dashboard',
+            'content' => $content
+        ]);
     }
 }
 ?>

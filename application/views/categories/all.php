@@ -8,7 +8,10 @@ require_once('page-header.php');
     <div class="col-lg-12">
         <?php if(isset($_SESSION['message'])): ?>
             <div class="alert alert-<?= $_SESSION['message_class']; ?>"><?= $_SESSION['message']; ?></div>
-        <?php endif; ?>
+        <?php
+            unset($_SESSION['message']);
+            endif;
+        ?>
 
         <!-- Categories -->
         <table width="100%" class="table table-striped table-bordered table-hover" id="data-table">

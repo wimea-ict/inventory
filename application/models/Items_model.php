@@ -47,11 +47,11 @@ class Items_model extends CI_Model {
         //      Number In = (number_in_new_batches - number_given_out + number_returned)
         //      Number Out = (items_given_out - items_returned)
         foreach ($items as &$item) {
-            $number_in_new_batchers = $this->get_number_in_transaction_type($item['id'], 'new_batch');
+            $number_in_new_batches = $this->get_number_in_transaction_type($item['id'], 'new_batch');
             $number_given_out = $this->get_number_in_transaction_type($item['id'], 'items_out');
             $number_returned = $this->get_number_in_transaction_type($item['id'], 'items_returned');
             
-            $item['number_in'] = ($number_in_new_batchers - $number_given_out + $number_returned);
+            $item['number_in'] = ($number_in_new_batches - $number_given_out + $number_returned);
             $item['number_out'] = ($number_given_out - $number_returned);
         }
         unset($item);
@@ -93,6 +93,8 @@ class Items_model extends CI_Model {
         else {
             $number = $query->row_array()['total_quantity'];
         }
+
+        return $number;
     }
 
     private function record_transaction_items($transaction_id, $transaction_type, $items) {

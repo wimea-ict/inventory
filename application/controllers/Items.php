@@ -117,5 +117,39 @@ class Items extends CI_Controller {
             'content' => $content
         ]);
     }
+
+    public function give_out() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $items = $this->input->post('items');
+            $quantities = $this->input->post('quantities');
+
+            $items_given_out = [];
+            for ($i = 0; $i < count($items); ++$i) {
+                $items_given_out[] = [
+                    'id' => $items[$i],
+                    'quantity' => $quantities[$i]
+                ];
+            }
+
+            $receiver = [
+                'name' => $this->input->post('receiver_name'),
+                'email' => $this->input->post('email'),
+                'contacts' => $this->input->post('contacts')
+            ];
+            $reason = $this->input->post('reason');
+            $date_out = $this->input->post('date_out');
+            $duration_out = $this->input->post('duration_out');
+            $this->items_model->give_out_items($items_given_out, $receiver, $reason, $date_out, $duration_out);
+
+            redirect(base_url('transactions/items-given-out'));
+        }
+
+        $data['items'] = $this->items_model->get_items();
+        $content = $this->load->view('items/give-out', $data, TRUE);
+        $this->load->view('main', [
+            'title' => 'Give Out Items',
+            'content' => $content
+        ]);
+    }
 }
 ?>

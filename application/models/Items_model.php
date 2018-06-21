@@ -64,16 +64,21 @@ class Items_model extends CI_Model {
         $sql = sprintf("INSERT INTO new_batches (date_brought) VALUES(%s)",
                         $this->db->escape($date_brought));
         $this->db->query($sql);
-        $new_batch_id = $this->db->insert_id();
 
-        // Record transaction items.
-        foreach ($batch_items as $item) {
-            $sql = sprintf("INSERT INTO transaction_items
-                                (transaction_id, transaction_type, item_id, quantity)
-                                VALUES(%d, 'new_batch', %d, %d)",
-                                $new_batch_id, $item['id'], $item['quantity']);
-            $this->db->query($sql);
-        }
+        $new_batch_id = $this->db->insert_id();
+        $this->record_transaction_items($new_batch_id, 'new_batch', $batch_items);
+    }
+
+    public function give_out_items($items_given_out, $receiver, $reason, $date_out, $duration_out) {
+        $sql = sprintf("INSERT INTO items_given_out (name, contacts, email, reason, date_out, duration_out)
+                        VALUES(%s, %s, %s, %s, %s, %s)",
+                        $this->db->escape($receiver['name']), $this->db->escape($receiver['contacts']),
+                        $this->db->escape($receiver['email']), $this->db->escape($reason),
+                        $this->db->escape($date_out), $this->db->escape($duration_out));
+        $this->db->query($sql);
+
+        $items_out_id = $this->db->insert_id();
+        $this->record_transaction_items($items_out_id, 'items_out', $items_given_out);
     }
 
     private function get_number_in_transaction_type($item_id, $type) {
@@ -87,6 +92,16 @@ class Items_model extends CI_Model {
         }
         else {
             $number = $query->row_array()['total_quantity'];
+        }
+    }
+
+    private function record_transaction_items($transaction_id, $transaction_type, $items) {
+        foreach ($items as $item) {
+            $sql = sprintf("INSERT INTO transaction_items
+                                (transaction_id, transaction_type, item_id, quantity)
+                                VALUES(%d, %s, %d, %d)",
+                                $transaction_id, $this->db->escape($transaction_type), $item['id'], $item['quantity']);
+            $this->db->query($sql);
         }
     }
 }

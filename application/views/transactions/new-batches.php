@@ -31,7 +31,7 @@ require_once(__DIR__ . '/../partials/page-header.php');
                         </td>
                         <td><?= (new DateTime($batch['date_brought']))->format('F jS, Y'); ?></td>
                         <td><?= (new DateTime($batch['date_entered']))->format('F jS, Y'); ?></td>
-                        <td><a href="<?= base_url("transactios/view/new-batch/{$batch['id']}"); ?>">View</a></td>
+                        <td><a href="<?= base_url("transactions/view/new-batch/{$batch['id']}"); ?>">View</a></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

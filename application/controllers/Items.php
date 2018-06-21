@@ -82,5 +82,40 @@ class Items extends CI_Controller {
             'content' => $content
         ]);
     }
+
+    public function new_batch() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $items = $this->input->post('items[]');
+            $quantities = $this->input->post('quantities[]');
+
+            $batch_items = [];
+            for ($i = 0; $i < count($items); ++$i) {
+                $batch_items[] = [
+                    'id' => $items[$i],
+                    'quantity' => $quantities[$i]
+                ];
+            }
+
+            $date_brought = $this->input->post('date_brought');
+            $this->items_model->create_new_batch($batch_items, $date_brought);
+
+            redirect(base_url('transactions/new-batches'));
+        }
+
+        $items = $this->items_model->get_items();
+        if (count($items) == 0) {
+            $this->session->set_flashdata([
+                'message' => 'There are no items on record. Please create items to continue.',
+                'message_class' => 'danger'
+            ]);
+        }
+
+        $data['items'] = $items;
+        $content = $this->load->view('items/new/batch', $data, TRUE);
+        $this->load->view('main', [
+            'title' => 'Create New Batch',
+            'content' => $content
+        ]);
+    }
 }
 ?>

@@ -59,6 +59,23 @@ class Items_model extends CI_Model {
         return $items;
     }
 
+    public function create_new_batch($batch_items, $date_brought) {
+        // Record transaction.
+        $sql = sprintf("INSERT INTO new_batches (date_brought) VALUES(%s)",
+                        $this->db->escape($date_brought));
+        $this->db->query($sql);
+        $new_batch_id = $this->db->insert_id();
+
+        // Record transaction items.
+        foreach ($batch_items as $item) {
+            $sql = sprintf("INSERT INTO transaction_items
+                                (transaction_id, transaction_type, item_id, quantity)
+                                VALUES(%d, 'new_batch', %d, %d)",
+                                $new_batch_id, $item['id'], $item['quantity']);
+            $this->db->query($sql);
+        }
+    }
+
     private function get_number_in_transaction_type($item_id, $type) {
         $sql = sprintf("SELECT SUM(quantity) as total_quantity
                         FROM transaction_items

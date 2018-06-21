@@ -43,13 +43,13 @@
                     <a href="#"><i class="fa fa-plus-square fa-fw"></i> New Transaction<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="<?= base_url("transactions/new-batch"); ?>">New Batch</a>
+                            <a href="<?= base_url("items/new-batch"); ?>">New Batch</a>
                         </li>
                         <li>
-                            <a href="<?= base_url("transactions/return-items"); ?>">Return Items</a>
+                            <a href="<?= base_url("items/return-items"); ?>">Return Items</a>
                         </li>
                         <li>
-                            <a href="<?= base_url("transactions/give-items-out"); ?>">Give Out Items</a>
+                            <a href="<?= base_url("items/give-out"); ?>">Give Out Items</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->

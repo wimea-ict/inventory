@@ -29,5 +29,36 @@ class Transactions extends CI_Controller {
             'content' => $content
         ]);
     }
+
+    public function view($transaction_type, $transaction_id) {
+        $transaction_type = str_replace('-', '_', $transaction_type);
+
+        $transaction = $this->transactions_model->get_transaction($transaction_id, $transaction_type);
+        if ($transaction == false) {
+            show_404();
+        }
+
+        $data['transaction'] = $transaction;
+        switch ($transaction_type) {
+            case 'new_batch':
+                $view = 'transactions/single-transaction/new-batch';
+                break;
+            case 'items_out':
+                $view = 'transactions/single-transaction/items-given-out';
+                break;
+            case 'items_returned':
+                $view = 'transactions/single-transaction/items-returned';
+                break;
+            default:
+                // Do nothing.
+                break;
+        }
+
+        $content = $this->load->view($view, $data, TRUE);
+        $this->load->view('main', [
+            'title' => ucwords(implode(' ', explode('_', $transaction_type))),
+            'content' => $content
+        ]);
+    }
 }
 ?>

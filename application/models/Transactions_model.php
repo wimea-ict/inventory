@@ -6,6 +6,39 @@ class Transactions_model extends CI_Model {
         parent::__construct();
     }
 
+    public function get_transaction($transaction_id, $transaction_type) {
+        // Determine which table to SELECT FROM.
+        switch ($transaction_type) {
+            case 'new_batch':
+                $table = 'new_batches';
+                break;
+            case 'items_out':
+                $table = 'items_given_out';
+                break;
+            case 'items_returned':
+                $table = 'items_returned';
+                break;
+            default:
+                // Do nothing.
+                break;
+        }
+
+        // Perform the SELECT.
+        $sql = sprintf("SELECT * FROM %s WHERE id = %d",
+                        $table, $transaction_id);
+        $query = $this->db->query($sql);
+        if ($query->num_rows() == 0) {
+            return false;
+        }
+
+        $transaction = $query->row_array();
+
+        // Get transaction items.
+        $this->get_items_in_transaction($transaction, $transaction_type);
+
+        return $transaction;
+    }
+
     public function get_new_batches() {
         $sql = sprintf("SELECT * FROM new_batches ORDER BY date_entered DESC");
         $query = $this->db->query($sql);

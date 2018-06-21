@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$page_heading = 'New Batches';
+$page_heading = 'Items Given Out';
 require_once(__DIR__ . '/../partials/page-header.php');
 ?>
 

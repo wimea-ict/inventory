@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $page_heading = 'New Batches';
-require_once('page-header.php');
+require_once(__DIR__ . '/../partials/page-header.php');
 ?>
 
 <div class="row">

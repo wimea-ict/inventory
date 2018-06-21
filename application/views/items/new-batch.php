@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-require_once('page-header.php');
+$page_heading = 'New Transaction';
+require_once(__DIR__ . '/../partials/page-header.php');
 ?>
 
 <div class="row">

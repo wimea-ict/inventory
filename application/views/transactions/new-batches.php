@@ -12,26 +12,26 @@ require_once(__DIR__ . '/../partials/page-header.php');
             <thead>
                 <tr>
                     <th>Batch</th>
-                    <th>Items [Quantity]</th>
+                    <th>Items</th>
                     <th>Date Brought</th>
                     <th>Date Recorded</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($batches as $batch):
-                ?>
+                <?php foreach ($batches as $batch): ?>
                     <tr>
                         <td><?= $batch['id']; ?></td>
                         <td>
                             <?php
-                            for ($j = 0; $j < (count($batch['items']) - 1); ++$j) {
-                                echo ucwords($batch['items'][$j]['name']) . " [{$batch['items'][$j]['quantity']}], ";
+                            for ($j = 0; $j < count($batch['items']); ++$j) {
+                                echo '- ' . ucwords($batch['items'][$j]['name']) . "<br>";
                             }
-                            echo ucwords($batch['items'][$j]['name']) . " [{$batch['items'][$j]['quantity']}]";
                             ?>
                         </td>
                         <td><?= (new DateTime($batch['date_brought']))->format('F jS, Y'); ?></td>
                         <td><?= (new DateTime($batch['date_entered']))->format('F jS, Y'); ?></td>
+                        <td><a href="<?= base_url("transactios/view/new-batch/{$batch['id']}"); ?>">View</a></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

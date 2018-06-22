@@ -18,6 +18,16 @@ require_once(__DIR__ . '/../partials/page-header.php');
 
         <!-- Items Given Out -->
         <table width="100%" class="table table-striped table-bordered table-hover" id="data-table">
+            <!-- Fix the width of the columns. -->
+            <colgroup>
+                <col style="width: 7.1833%">
+                <col style="width: 17.1257%">
+                <col style="width: 13.9024%">
+                <col style="width: 11.9512%">
+                <col style="width: 22.2188%">
+                <col style="width: 17.2764%">
+                <col>
+            </colgroup>
             <thead>
                 <tr>
                     <th>No</th>

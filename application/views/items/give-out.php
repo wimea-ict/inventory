@@ -72,8 +72,20 @@ require_once(__DIR__ . '/../partials/page-header.php');
                     </div>
                     <div class="form-group">
                         <label for="duration-out">Duration Out</label>
-                        <input type="text" name="duration_out" id="duration-out" class="form-control"
-                                <?= isset($duration_out) ? " value='{$duration_out}'" : '' ?>>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <input type="text" name="duration" id="duration-out" class="form-control">
+                            </div>
+                            <div class="col-lg-8">
+                                <label for="duration-unit" class="sr-only">Duration Unit</label>
+                                <select name="duration_unit" id="duration-unit" class="form-control">
+                                    <option value="day">Day</option>
+                                    <option value="week">Week</option>
+                                    <option value="month">Month</option>
+                                    <option value="year">Year</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                     <input type="submit" value="Submit" class="btn btn-primary">

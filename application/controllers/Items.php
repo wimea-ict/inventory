@@ -142,7 +142,10 @@ class Items extends CI_Controller {
             ];
             $reason = $this->input->post('reason');
             $date_out = $this->input->post('date_out');
-            $duration_out = $this->input->post('duration_out');
+
+            $duration = $this->input->post('duration');
+            $duration_unit = $this->input->post('duration_unit');
+            $duration_out = "{$duration} {$duration_unit}";
 
             // Check for duplicate selections.
             if (count($items) == count(array_unique($items))) {
@@ -156,8 +159,7 @@ class Items extends CI_Controller {
                 $data = [
                     'receiver' => $receiver,
                     'reason' => $reason,
-                    'date_out' => $date_out,
-                    'duration_out' => $duration_out
+                    'date_out' => $date_out
                 ];
             }
         }

@@ -197,8 +197,9 @@ class Items extends CI_Controller {
             $_SESSION['message'] = 'Please select a transaction to return the items. You can always search by name or email address.';
             $_SESSION['message_class'] = 'info';
 
+            $data['page_heading'] = 'Return Items';
             $data['transactions'] = $this->transactions_model->get_items_given_out('pending');
-            $content = $this->load->view('items/return-items', $data, TRUE);
+            $content = $this->load->view('transactions/items-given-out', $data, TRUE);
         }
 
         $this->load->view('main', [

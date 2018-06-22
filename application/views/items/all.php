@@ -28,7 +28,7 @@ require_once(__DIR__ . '/../partials/page-header.php');
                     <th>Since</th>
                     <th>Number In</th>
                     <th>Number Out</th>
-                    <th>Actions</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,7 +46,7 @@ require_once(__DIR__ . '/../partials/page-header.php');
                         <td>
                             <div class="btn-group">
                                 <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                    Actions
+                                    Action
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu pull-right" role="menu">
@@ -54,6 +54,7 @@ require_once(__DIR__ . '/../partials/page-header.php');
                                     <li><a href="#">Transactions</a></li>
                                 </ul>
                             </div>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

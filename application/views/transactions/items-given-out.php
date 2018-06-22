@@ -1,12 +1,21 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$page_heading = 'Items Given Out';
 require_once(__DIR__ . '/../partials/page-header.php');
 ?>
 
 <div class="row">
     <div class="col-lg-12">
+        <?php if(isset($_SESSION['message'])): ?>
+            <div class="alert alert-dismissable alert-<?= $_SESSION['message_class']; ?>">
+                <button type="button" data-dismiss="alert" aria-hidden="true" class="close">&times;</button>
+                <?= $_SESSION['message']; ?>
+            </div>
+        <?php
+            unset($_SESSION['message']);
+            endif;
+        ?>
+
         <!-- Items Given Out -->
         <table width="100%" class="table table-striped table-bordered table-hover" id="data-table">
             <thead>
@@ -20,7 +29,7 @@ require_once(__DIR__ . '/../partials/page-header.php');
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($items_given_out as $transaction): ?>
+                <?php foreach ($transactions as $transaction): ?>
                     <tr>
                         <td>
                             <?php
@@ -40,7 +49,18 @@ require_once(__DIR__ . '/../partials/page-header.php');
                         </td>
                         <td><?= $transaction['reason']; ?></td>
                         <td><?= (new DateTime($transaction['date_out']))->format('F jS, Y'); ?></td>
-                        <td><a href="<?= base_url("transactions/view/items-out/{$transaction['id']}"); ?>">View</a></td>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                    Action
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu pull-right" role="menu">
+                                    <li><a href="<?= base_url("transactions/view/items-out/{$transaction['id']}"); ?>">View</a></li>
+                                    <li><a href="<?= base_url("items/return-items/{$transaction['id']}"); ?>">Return Items</a></li>
+                                </ul>
+                            </div>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

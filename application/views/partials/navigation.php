@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: skyblue;">
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: skyblue; border-bottom: 1px solid rgb(34, 99, 99);">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>

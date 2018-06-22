@@ -25,6 +25,7 @@ require_once(__DIR__ . '/../partials/page-header.php');
                         <label for="item-name">Item Name</label>
                         <input type="text" name="item_name" id="item-name" class="form-control"
                             <?= isset($item) ? " value='" . ucwords($item['name']) . "'" : '' ?>>
+                        <span class="help-block">Enter singular name for item</span>
                     </div>
                     <div class="form-group">
                         <label for="category">Category</label>

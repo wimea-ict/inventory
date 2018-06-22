@@ -20,7 +20,8 @@ require_once(__DIR__ . '/../partials/page-header.php');
         <table width="100%" class="table table-striped table-bordered table-hover" id="data-table">
             <thead>
                 <tr>
-                    <th>Items [Quantity]</th>
+                    <th>No</th>
+                    <th>Items</th>
                     <th>Name</th>
                     <th>Contacts</th>
                     <th>Reason</th>
@@ -29,8 +30,12 @@ require_once(__DIR__ . '/../partials/page-header.php');
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($transactions as $transaction): ?>
+                <?php
+                $i = 0;
+                foreach ($transactions as $transaction):
+                ?>
                     <tr>
+                        <td><?= ++$i; ?></td>
                         <td>
                             <?php
                             for ($j = 0; $j < count($transaction['items']); ++$j) {

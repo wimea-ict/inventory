@@ -13,7 +13,7 @@ class Transactions extends CI_Controller {
     }
 
     public function new_batches() {
-        $data['batches'] = $this->transactions_model->get_new_batches();
+        $data['transactions'] = $this->transactions_model->get_new_batches();
         $content = $this->load->view('transactions/new-batches', $data, TRUE);
         $this->load->view('main', [
             'title' => 'New Batches',

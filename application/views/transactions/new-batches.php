@@ -19,7 +19,7 @@ require_once(__DIR__ . '/../partials/page-header.php');
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($batches as $batch): ?>
+                <?php foreach ($transactions as $batch): ?>
                     <tr>
                         <td><?= $batch['id']; ?></td>
                         <td>

@@ -28,7 +28,7 @@ require_once(__DIR__ . '/../partials/page-header.php');
                     <th>Since</th>
                     <th>Number In</th>
                     <th>Number Out</th>
-                    <th>Action</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,7 +43,17 @@ require_once(__DIR__ . '/../partials/page-header.php');
                         <td><?= (new DateTime($item['date_entered']))->format('F jS, Y'); ?></td>
                         <td><?= $item['number_in']; ?></td>
                         <td><?= $item['number_out']; ?></td>
-                        <td><a href="<?= base_url("items/edit/{$item['id']}"); ?>">Edit</a></td>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                    Actions
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu pull-right" role="menu">
+                                    <li><a href="<?= base_url("items/edit/{$item['id']}"); ?>">Edit</a></li>
+                                    <li><a href="#">Transactions</a></li>
+                                </ul>
+                            </div>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

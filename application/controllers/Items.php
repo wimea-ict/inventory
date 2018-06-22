@@ -9,7 +9,11 @@ class Items extends CI_Controller {
             redirect(base_url('auth/login'));
         }
 
-        $this->load->model(['items_model', 'categories_model']);
+        $this->load->model([
+            'items_model',
+            'categories_model',
+            'transactions_model'
+        ]);
     }
 
     public function index() {
@@ -148,6 +152,57 @@ class Items extends CI_Controller {
         $content = $this->load->view('items/give-out', $data, TRUE);
         $this->load->view('main', [
             'title' => 'Give Out Items',
+            'content' => $content
+        ]);
+    }
+
+    /**
+     * Returning items is a three step process.
+     *      1. User views a list of transactions whose items haven't been fully returned.
+     *      2. User selects a transaction to return the items.
+     *      3. User fill in the number for each item being returned.
+     */
+    public function return_items($transaction_id = NULL) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $items = $this->input->post('items');
+            $quantities = $this->input->post('quantities');
+
+            $returned_items = [];
+            for ($i = 0; $i < count($items); ++$i) {
+                $returned_items[] = [
+                    'id' => $items[$i],
+                    'quantity' => $quantities[$i]
+                ];
+            }
+
+            $date_returned = $this->input->post('date_returned');
+            $comments = $this->input->post('comments');
+            $items_out_id = $this->input->post('items_out_id');
+            $this->items_model->return_items($items_out_id, $returned_items, $date_returned, $comments);
+
+            // redirect(base_url("transactions/items-returned"));
+            exit();
+        }
+
+        if ($transaction_id != NULL) {
+            $transaction = $this->transactions_model->get_transaction($transaction_id, 'items_out');
+            if ($transaction == false) {
+                show_404();
+            }
+
+            $data['transaction'] = $transaction;
+            $content = $this->load->view('transactions/single-transaction/return-items', $data, TRUE);
+        }
+        else {
+            $_SESSION['message'] = 'Please select a transaction to return the items. You can always search by name or email address.';
+            $_SESSION['message_class'] = 'info';
+
+            $data['transactions'] = $this->transactions_model->get_items_given_out('pending');
+            $content = $this->load->view('items/return-items', $data, TRUE);
+        }
+
+        $this->load->view('main', [
+            'title' => 'Return Items',
             'content' => $content
         ]);
     }

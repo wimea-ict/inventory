@@ -70,6 +70,7 @@ class Items_model extends CI_Model {
     }
 
     public function give_out_items($items_given_out, $receiver, $reason, $date_out, $duration_out) {
+        // Record the transaction.
         $sql = sprintf("INSERT INTO items_given_out (name, contacts, email, reason, date_out, duration_out)
                         VALUES(%s, %s, %s, %s, %s, %s)",
                         $this->db->escape($receiver['name']), $this->db->escape($receiver['contacts']),
@@ -79,6 +80,41 @@ class Items_model extends CI_Model {
 
         $items_out_id = $this->db->insert_id();
         $this->record_transaction_items($items_out_id, 'items_out', $items_given_out);
+    }
+
+    public function return_items($items_out_id, $returned_items, $date_returned, $comments) {
+        // Record the transaction.
+        $sql = sprintf("INSERT INTO items_returned (items_out_id, date_returned, comments)
+                        VALUES(%d, %s, %s)", $items_out_id,
+                        $this->db->escape($date_returned), $this->db->escape($comments));
+        $this->db->query($sql);
+
+        $items_returned_id = $this->db->insert_id();
+        $this->record_transaction_items($items_returned_id, 'items_returned', $returned_items);
+
+        // Were all items returned?
+        $items_out_transaction = $this->transactions_model->get_transaction($items_out_id, 'items_out');
+        $items_taken_out = $items_out_transaction['items'];
+
+        $all_items_returned = TRUE;
+
+        // Too much nesting, but bare with me on this one.
+        foreach ($returned_items as $item_returned) {
+            foreach ($items_taken_out as $item_taken_out) {
+                if ($item_taken_out['item_id'] == $item_returned['id']) {
+                    if ($item_taken_out['quantity'] != $item_returned['quantity']) {
+                        $all_items_returned = false;
+                    }
+                }
+            }
+        }
+
+        if ($all_items_returned == TRUE) {
+            $sql = sprintf("UPDATE items_given_out
+                            SET status = 'returned'
+                            WHERE id = %d", $items_out_id);
+            $this->db->query($sql);
+        }
     }
 
     private function get_number_in_transaction_type($item_id, $type) {

@@ -143,9 +143,23 @@ class Items extends CI_Controller {
             $reason = $this->input->post('reason');
             $date_out = $this->input->post('date_out');
             $duration_out = $this->input->post('duration_out');
-            $this->items_model->give_out_items($items_given_out, $receiver, $reason, $date_out, $duration_out);
 
-            redirect(base_url('transactions/items-given-out'));
+            // Check for duplicate selections.
+            if (count($items) == count(array_unique($items))) {
+                $this->items_model->give_out_items($items_given_out, $receiver, $reason, $date_out, $duration_out);
+                redirect(base_url('transactions/items-given-out'));
+            }
+            else {
+                $_SESSION['message'] = 'Repetitions delected in items selected. Please try again.';
+                $_SESSION['message_class'] = 'danger';
+
+                $data = [
+                    'receiver' => $receiver,
+                    'reason' => $reason,
+                    'date_out' => $date_out,
+                    'duration_out' => $duration_out
+                ];
+            }
         }
 
         $data['items'] = $this->items_model->get_items();

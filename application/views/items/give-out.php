@@ -7,6 +7,16 @@ require_once(__DIR__ . '/../partials/page-header.php');
 
 <div class="row">
     <div class="col-lg-8">
+        <?php if(isset($_SESSION['message'])): ?>
+            <div class="alert alert-dismissable alert-<?= $_SESSION['message_class']; ?>">
+                <button type="button" data-dismiss="alert" aria-hidden="true" class="close">&times;</button>
+                <?= $_SESSION['message']; ?>
+            </div>
+        <?php
+            unset($_SESSION['message']);
+            endif;
+        ?>
+
         <div class="panel panel-default">
             <div class="panel-heading">Give Items Out</div>
             <!-- /.panel-heading -->
@@ -37,28 +47,33 @@ require_once(__DIR__ . '/../partials/page-header.php');
                     </fieldset>
                     <div class="form-group">
                         <label for="receiver-name">Receiver Name</label>
-                        <input type="text" name="receiver_name" id="receiver-name" class="form-control">
+                        <input type="text" name="receiver_name" id="receiver-name" class="form-control"
+                                <?= isset($receiver) ? " value='{$receiver['name']}'" : '' ?>>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="email" class="form-control">
+                        <input type="email" name="email" id="email" class="form-control"
+                                <?= isset($receiver) ? " value='{$receiver['email']}'" : '' ?>>
                     </div>
                     <div class="form-group">
                         <label for="contacts">Phone Numbers</label>
-                        <input type="text" name="contacts" id="contacts" class="form-control">
+                        <input type="text" name="contacts" id="contacts" class="form-control"
+                                <?= isset($receiver) ? " value='{$receiver['contacts']}'" : '' ?>>
                         <span class="help-block">Separate multiple contacts with the slash(/) character.</span>
                     </div>
                     <div class="form-group">
                         <label for="reason">Reason</label>
-                        <textarea name="reason" id="reason" class="form-control"></textarea>
+                        <textarea name="reason" id="reason" class="form-control"><?= isset($reason) ? "{$reason}" : ''; ?></textarea>
                     </div>
                     <div class="form-group">
                         <label for="date-out">Date out</label>
-                        <input type="text" name="date_out" id="date-out" class="form-control">
+                        <input type="text" name="date_out" id="date-out" class="form-control"
+                                <?= isset($date_out) ? " value='{$date_out}'" : '' ?>>
                     </div>
                     <div class="form-group">
                         <label for="duration-out">Duration Out</label>
-                        <input type="text" name="duration_out" id="duration-out" class="form-control">
+                        <input type="text" name="duration_out" id="duration-out" class="form-control"
+                                <?= isset($duration_out) ? " value='{$duration_out}'" : '' ?>>
                     </div>
 
                     <input type="submit" value="Submit" class="btn btn-primary">

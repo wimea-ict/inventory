@@ -16,7 +16,6 @@ require_once(__DIR__ . '/../partials/page-header.php');
             unset($_SESSION['message']);
             endif; 
         ?>
-
         
         <!-- Items -->
         <table width="100%" class="table table-striped table-bordered table-hover" id="data-table">

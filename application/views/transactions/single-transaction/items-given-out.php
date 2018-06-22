@@ -42,6 +42,10 @@ require_once(__DIR__ . '/../../partials/page-header.php');
                     <td><?= (new DateTime($transaction['date_out']))->format('F jS, Y'); ?></td>
                 </tr>
                 <tr>
+                    <th scope="row">Date Recorded</th>
+                    <td><?= (new DateTime($transaction['date_entered']))->format('F jS, Y'); ?></td>
+                </tr>
+                <tr>
                     <th scope="row">Expected Return Date</th>
                     <td>
                         <?php

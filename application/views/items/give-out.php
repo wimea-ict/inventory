@@ -33,6 +33,7 @@ require_once(__DIR__ . '/../partials/page-header.php');
                                     <select name="items[]" id="item" class="form-control">
                                         <?php foreach ($items as $item): ?>
                                             <?php if ($item['number_in'] > 0): ?>
+                                                <!-- Only give out items that are still in stock. -->
                                                 <option value="<?= $item['id']; ?>"><?= ucwords($item['name']); ?></option>
                                             <?php endif; ?>
                                         <?php endforeach; ?>

@@ -31,7 +31,7 @@ class Transactions extends CI_Controller {
     }
 
     public function items_given_out() {
-        $data['items_given_out'] = $this->transactions_model->get_items_given_out();
+        $data['items_given_out'] = $this->transactions_model->get_items_given_out('pending');
         $content = $this->load->view('transactions/items-given-out', $data, TRUE);
         $this->load->view('main', [
             'title' => 'Items Given Out',

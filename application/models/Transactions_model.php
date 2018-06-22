@@ -74,7 +74,7 @@ class Transactions_model extends CI_Model {
 
         // Get the items in each transaction.
         foreach ($transactions as &$transaction) {
-            $this->get_items_in_transaction($transaction, 'new_batch');
+            $this->get_items_in_transaction($transaction, 'items_returned');
         }
         unset($transaction);
 

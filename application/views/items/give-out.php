@@ -22,7 +22,9 @@ require_once(__DIR__ . '/../partials/page-header.php');
                                     <label for="item">Item</label>
                                     <select name="items[]" id="item" class="form-control">
                                         <?php foreach ($items as $item): ?>
-                                            <option value="<?= $item['id']; ?>"><?= ucwords($item['name']); ?></option>
+                                            <?php if ($item['number_in'] > 0): ?>
+                                                <option value="<?= $item['id']; ?>"><?= ucwords($item['name']); ?></option>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>

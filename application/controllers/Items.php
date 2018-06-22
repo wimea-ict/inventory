@@ -101,9 +101,18 @@ class Items extends CI_Controller {
             }
 
             $date_brought = $this->input->post('date_brought');
-            $this->items_model->create_new_batch($batch_items, $date_brought);
 
-            redirect(base_url('transactions/new-batches'));
+            // Check for duplicate selection of items.
+            if (count($items) == count(array_unique($items))) {
+                $this->items_model->create_new_batch($batch_items, $date_brought);
+                redirect(base_url('transactions/new-batches'));
+            }
+            else {
+                $_SESSION['message'] = 'Repetitions detected in items selected. Please try again.';
+                $_SESSION['message_class'] = 'danger';
+
+                $data['date_brought'] = $date_brought;
+            }
         }
 
         $items = $this->items_model->get_items();
@@ -147,13 +156,13 @@ class Items extends CI_Controller {
             $duration_unit = $this->input->post('duration_unit');
             $duration_out = "{$duration} {$duration_unit}";
 
-            // Check for duplicate selections.
+            // Check for duplicate selection of items.
             if (count($items) == count(array_unique($items))) {
                 $this->items_model->give_out_items($items_given_out, $receiver, $reason, $date_out, $duration_out);
                 redirect(base_url('transactions/items-given-out'));
             }
             else {
-                $_SESSION['message'] = 'Repetitions delected in items selected. Please try again.';
+                $_SESSION['message'] = 'Repetitions detected in items selected. Please try again.';
                 $_SESSION['message_class'] = 'danger';
 
                 $data = [
@@ -196,8 +205,7 @@ class Items extends CI_Controller {
             $items_out_id = $this->input->post('items_out_id');
             $this->items_model->return_items($items_out_id, $returned_items, $date_returned, $comments);
 
-            // redirect(base_url("transactions/items-returned"));
-            exit();
+            redirect(base_url("transactions/items-returned"));
         }
 
         if ($transaction_id != NULL) {

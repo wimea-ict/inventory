@@ -43,7 +43,8 @@ require_once(__DIR__ . '/../partials/page-header.php');
                     </fieldset>
                     <div class="form-group">
                         <label for="date-brought">Date brought</label>
-                        <input type="text" name="date_brought" id="date-brought" class="form-control">
+                        <input type="text" name="date_brought" id="date-brought" class="form-control"
+                                <?= isset($date_brought) ? " value='{$date_brought}'": ''; ?>>
                     </div>
 
                     <input type="submit" value="Submit" class="btn btn-primary">

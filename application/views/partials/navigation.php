@@ -97,11 +97,15 @@
                     <a href="#"><i class="fa fa-users fa-fw"></i> Users<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="<?= base_url("users"); ?>">Manage Users</a>
+                            <a href="<?= base_url("users"); ?>">View Users</a>
                         </li>
-                        <li>
-                            <a href="<?= base_url("users/create"); ?>">Create New User</a>
-                        </li>
+
+                        <!-- Only allow the default admin to create new users. -->
+                        <?php if ($_SESSION['user']['username'] == 'admin'): ?>
+                            <li>
+                                <a href="<?= base_url("users/create"); ?>">Create New User</a>
+                            </li>
+                        <?php endif; ?>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>

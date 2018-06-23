@@ -77,6 +77,8 @@ require_once(__DIR__ . '/../../partials/page-header.php');
             </tbody>
         </table>
         <!-- /.table-responsive -->
+
+        <a href="<?= base_url("items/return-items/{$transaction['id']}"); ?>" class="btn btn-block btn-primary">Return Items</a>
     </div>
     <!-- /.col-lg-8 -->
 </div>

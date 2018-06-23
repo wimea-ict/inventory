@@ -25,8 +25,12 @@
         <!-- JQuery UI JS -->
         <script src="<?= base_url("assets/vendor/jquery/jquery-ui-1.12.1.custom/jquery-ui.min.js"); ?>"></script>
 
+        <!-- JQuery Form Validator -->
+        <script src="<?= base_url("assets/vendor/jquery-validation-1.17.0/jquery.validate.min.js"); ?>"></script>
+
         <!-- JS for the inventory system -->
         <script src="<?= base_url("js/inventory.js"); ?>"></script>
+        <script src="<?= base_url("js/form-validation.js"); ?>"></script>
 
     </body>
 </html>

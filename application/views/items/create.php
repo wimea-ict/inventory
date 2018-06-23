@@ -20,16 +20,16 @@ require_once(__DIR__ . '/../partials/page-header.php');
         <div class="panel panel-default">
             <div class="panel-heading"><?= $panel_heading; ?></div>
             <div class="panel-body">
-                <form action="" method="post">
+                <form action="" method="post" id="create-item-form">
                     <div class="form-group">
                         <label for="item-name">Item Name</label>
                         <input type="text" name="item_name" id="item-name" class="form-control"
-                            <?= isset($item) ? " value='" . ucwords($item['name']) . "'" : '' ?>>
+                            <?= isset($item) ? " value='" . ucwords($item['name']) . "'" : '' ?> required>
                         <span class="help-block">Enter singular name for item</span>
                     </div>
                     <div class="form-group">
                         <label for="category">Category</label>
-                        <select name="category" id="category" class="form-control">
+                        <select name="category" id="category" class="form-control" required>
                             <?php foreach ($categories as $category): ?>
                                 <option value="<?= $category['id']; ?>" <?= (isset($item) && ($item['category_id'] == $category['id'])) ? ' selected' : '';?>>
                                     <?= ucwords($category['name']); ?>

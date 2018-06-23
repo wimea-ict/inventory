@@ -21,7 +21,7 @@ require_once(__DIR__ . '/../partials/page-header.php');
             <div class="panel-heading">Give Items Out</div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <form action="" method="post">
+                <form action="" method="post" id="give-items-out-form">
                     <fieldset>
                         <legend class="text-success">
                             Items
@@ -30,7 +30,7 @@ require_once(__DIR__ . '/../partials/page-header.php');
                             <div class="col-sm-8">
                                 <div class="form-group" id="items">
                                     <label for="item">Item</label>
-                                    <select name="items[]" id="item" class="form-control">
+                                    <select name="items[]" id="item" class="form-control" required>
                                         <?php foreach ($items as $item): ?>
                                             <?php if ($item['number_in'] > 0): ?>
                                                 <!-- Only give out items that are still in stock. -->
@@ -42,44 +42,44 @@ require_once(__DIR__ . '/../partials/page-header.php');
                             </div>
                             <div class="col-sm-4" id="quantities">
                                 <label for="quantity">Quantity</label>
-                                <input type="text" name="quantities[]" id="quantity" class="form-control">
+                                <input type="number" name="quantities[]" min="0" id="quantity" class="form-control" required>
                             </div>
                         </div>
                     </fieldset>
                     <div class="form-group">
                         <label for="receiver-name">Receiver Name</label>
                         <input type="text" name="receiver_name" id="receiver-name" class="form-control"
-                                <?= isset($receiver) ? " value='{$receiver['name']}'" : '' ?>>
+                                <?= isset($receiver) ? " value='{$receiver['name']}'" : '' ?> required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" name="email" id="email" class="form-control"
-                                <?= isset($receiver) ? " value='{$receiver['email']}'" : '' ?>>
+                                <?= isset($receiver) ? " value='{$receiver['email']}'" : '' ?> required>
                     </div>
                     <div class="form-group">
                         <label for="contacts">Phone Numbers</label>
-                        <input type="text" name="contacts" id="contacts" class="form-control"
-                                <?= isset($receiver) ? " value='{$receiver['contacts']}'" : '' ?>>
+                        <input type="text" name="contacts" id="contacts" class="form-control" minlength="10"
+                                <?= isset($receiver) ? " value='{$receiver['contacts']}'" : '' ?> required>
                         <span class="help-block">Separate multiple contacts with the slash(/) character.</span>
                     </div>
                     <div class="form-group">
                         <label for="reason">Reason</label>
-                        <textarea name="reason" id="reason" class="form-control"><?= isset($reason) ? "{$reason}" : ''; ?></textarea>
+                        <textarea name="reason" id="reason" class="form-control" minlength="5" required><?= isset($reason) ? "{$reason}" : ''; ?></textarea>
                     </div>
                     <div class="form-group">
                         <label for="date-out">Date out</label>
                         <input type="text" name="date_out" id="date-out" class="form-control date-picker"
-                                <?= isset($date_out) ? " value='{$date_out}'" : '' ?>>
+                                <?= isset($date_out) ? " value='{$date_out}'" : '' ?> required>
                     </div>
                     <div class="form-group">
                         <label for="duration-out">Duration Out</label>
                         <div class="row">
                             <div class="col-lg-4">
-                                <input type="text" name="duration" id="duration-out" class="form-control">
+                                <input type="number" min="1" name="duration" id="duration-out" class="form-control" required>
                             </div>
                             <div class="col-lg-8">
                                 <label for="duration-unit" class="sr-only">Duration Unit</label>
-                                <select name="duration_unit" id="duration-unit" class="form-control">
+                                <select name="duration_unit" id="duration-unit" class="form-control" required>
                                     <option value="day">Day</option>
                                     <option value="week">Week</option>
                                     <option value="month">Month</option>

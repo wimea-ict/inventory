@@ -28,7 +28,7 @@ require_once(__DIR__ . '/../../partials/page-header.php');
                             <div class="col-sm-4" id="quantities">
                                 <label for="quantity">Quantity</label>
                                 <?php foreach ($transaction['items'] as $item): ?>
-                                    <input type="number" min="0" name="quantities[]" id="quantity" class="form-control" value="<?= $item['quantity']; ?>" style="margin-top: 5px" required>
+                                    <input type="number" min="0" max="<?= $item['quantity']; ?>" name="quantities[]" id="quantity" class="form-control" value="<?= $item['quantity']; ?>" style="margin-top: 5px" required>
                                 <?php endforeach; ?>
                             </div>
                         </div>

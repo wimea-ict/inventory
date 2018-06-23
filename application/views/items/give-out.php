@@ -68,7 +68,7 @@ require_once(__DIR__ . '/../partials/page-header.php');
                     </div>
                     <div class="form-group">
                         <label for="date-out">Date out</label>
-                        <input type="text" name="date_out" id="date-out" class="form-control"
+                        <input type="text" name="date_out" id="date-out" class="form-control date-picker"
                                 <?= isset($date_out) ? " value='{$date_out}'" : '' ?>>
                     </div>
                     <div class="form-group">

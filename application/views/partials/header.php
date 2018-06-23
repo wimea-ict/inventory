@@ -34,6 +34,9 @@
         <!-- Custom Fonts -->
         <link href="<?= base_url("assets/vendor/font-awesome/css/font-awesome.min.css"); ?>" rel="stylesheet" type="text/css">
 
+        <!-- JQuery UI CSS -->
+        <link rel="stylesheet" href="<?= base_url("assets/vendor/jquery/jquery-ui-1.12.1.custom/jquery-ui.min.css"); ?>">
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>

@@ -22,6 +22,9 @@
         <!-- Custom Theme JavaScript -->
         <script src="<?= base_url("js/sb-admin-2.js"); ?>"></script>
 
+        <!-- JQuery UI JS -->
+        <script src="<?= base_url("assets/vendor/jquery/jquery-ui-1.12.1.custom/jquery-ui.min.js"); ?>"></script>
+
         <!-- JS for the inventory system -->
         <script src="<?= base_url("js/inventory.js"); ?>"></script>
 

@@ -8,3 +8,7 @@ $('#more-items').click(function(event) {
 $('#data-table').DataTable({
     responsive: true
 });
+
+$('.date-picker').datepicker({
+    dateFormat: "yy-mm-dd"
+});

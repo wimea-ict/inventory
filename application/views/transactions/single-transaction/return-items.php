@@ -35,7 +35,7 @@ require_once(__DIR__ . '/../../partials/page-header.php');
                     </fieldset>
                     <div class="form-group">
                         <label for="date-returned">Date returned</label>
-                        <input type="text" name="date_returned" id="date-returned" class="form-control">
+                        <input type="text" name="date_returned" id="date-returned" class="form-control date-picker">
                     </div>
                     <div class="form-group">
                         <label for="comments">Comments</label>

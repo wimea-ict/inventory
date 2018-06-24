@@ -3,6 +3,10 @@ a {
     outline: none;
 }
 
+.page-header .pull-right {
+    margin-top: -12px;
+}
+
 /* Tabbed Navigation */
 .tabbed-nav {
     border-bottom: 1px solid #ddd;

@@ -126,7 +126,7 @@ class Items extends CI_Controller {
         $data['items'] = $items;
         $content = $this->load->view('items/new-batch', $data, TRUE);
         $this->load->view('main', [
-            'title' => 'Create New Batch',
+            'title' => 'Add New Batch',
             'content' => $content
         ]);
     }

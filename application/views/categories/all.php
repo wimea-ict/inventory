@@ -2,6 +2,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $page_heading = 'Categories';
+$heading_button = [
+    'title' => 'New Category',
+    'link' => base_url('categories/create')
+];
 require_once(__DIR__ . '/../partials/page-header.php');
 ?>
 

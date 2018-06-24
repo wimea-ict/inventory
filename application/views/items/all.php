@@ -2,6 +2,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $page_heading = 'Items';
+$heading_button = [
+    'title' => 'New Item',
+    'link' => base_url('items/create')
+];
 require_once(__DIR__ . '/../partials/page-header.php');
 ?>
 

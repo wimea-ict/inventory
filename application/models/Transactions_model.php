@@ -109,6 +109,15 @@ class Transactions_model extends CI_Model {
         return $items_given_out;
     }
 
+    public function get_num_transactions() {
+        $sql = sprintf("SELECT COUNT(DISTINCT transaction_id, transaction_type) AS num_transactions
+                        FROM transaction_items");
+        $query = $this->db->query($sql);
+        $result = $query->row_array();
+
+        return $result['num_transactions'];
+    }
+
     private function get_items_in_transaction(&$transaction, $transaction_type) {
         $transaction['items'] = [];
 

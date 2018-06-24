@@ -56,5 +56,13 @@ class Categories_model extends CI_Model {
 
         return $this->db->affected_rows();
     }
+
+    public function get_num_categories() {
+        $sql = sprintf("SELECT COUNT(id) AS num_categories FROM categories");
+        $query = $this->db->query($sql);
+        $result = $query->row_array();
+
+        return $result['num_categories'];
+    }
 }
 ?>

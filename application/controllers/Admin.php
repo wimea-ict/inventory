@@ -8,10 +8,20 @@ class Admin extends CI_Controller {
         if ($this->session->has_userdata('user') == false) {
             redirect(base_url('auth/login'));
         }
+
+        $this->load->model([
+            'transactions_model',
+            'categories_model',
+            'items_model',
+            'admin_model'
+        ]);
     }
 
     public function dashboard() {
-        $data = [];
+        $data['num_transactions'] = $this->transactions_model->get_num_transactions();
+        $data['num_need_attention'] = $this->admin_model->get_num_need_attention();
+        $data['num_categories'] = $this->categories_model->get_num_categories();
+        $data['num_items'] = $this->items_model->get_num_items();
         $content = $this->load->view('dashboard', $data, TRUE);
         $this->load->view('main', [
             'title' => 'Dashboard',

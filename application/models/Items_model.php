@@ -117,6 +117,14 @@ class Items_model extends CI_Model {
         }
     }
 
+    public function get_num_items() {
+        $sql = sprintf("SELECT COUNT(id) AS num_items FROM items");
+        $query = $this->db->query($sql);
+        $result = $query->row_array();
+
+        return $result['num_items'];
+    }
+
     private function get_number_in_transaction_type($item_id, $type) {
         $sql = sprintf("SELECT SUM(quantity) as total_quantity
                         FROM transaction_items

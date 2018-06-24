@@ -17,12 +17,12 @@
                         <i class="fa fa-tags fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">26</div>
+                        <div class="huge"><?= $num_categories; ?></div>
                         <div>Categories</div>
                     </div>
                 </div>
             </div>
-            <a href="#">
+            <a href="<?= base_url("categories"); ?>">
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -39,12 +39,12 @@
                         <i class="fa fa-list fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">12</div>
+                        <div class="huge"><?= $num_items; ?></div>
                         <div>Items</div>
                     </div>
                 </div>
             </div>
-            <a href="#">
+            <a href="<?= base_url("items"); ?>">
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -61,12 +61,12 @@
                         <i class="fa fa-exchange fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">124</div>
+                        <div class="huge"><?= $num_transactions; ?></div>
                         <div>Transactions</div>
                     </div>
                 </div>
             </div>
-            <a href="#">
+            <a href="<?= base_url("transactions");?>">
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -83,12 +83,12 @@
                         <i class="fa fa-warning fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">13</div>
+                        <div class="huge"><?= $num_need_attention; ?></div>
                         <div>Need Attention!</div>
                     </div>
                 </div>
             </div>
-            <a href="#">
+            <a href="<?= base_url("admin/need-attention"); ?>">
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

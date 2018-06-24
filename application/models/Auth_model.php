@@ -21,5 +21,13 @@ class Auth_model extends CI_Model {
 
         return $user;
     }
+
+    public function user_exists($username) {
+        $sql = sprintf("SELECT id FROM users WHERE username = %s",
+                        $this->db->escape($username));
+        $query = $this->db->query($sql);
+
+        return ($query->num_rows() > 0);
+    }
 }
 ?>

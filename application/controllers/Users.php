@@ -5,7 +5,7 @@ class Users extends CI_Controller {
     public function __construct() {
         parent::__construct();
 
-        $this->load->model(['users_model']);
+        $this->load->model(['users_model', 'auth_model']);
     }
 
     public function index() {
@@ -34,18 +34,26 @@ class Users extends CI_Controller {
 
             $password1 = $this->input->post('password1');
             $password2 = $this->input->post('password2');
-            if ($password1 == $password2) {
-                $user['password'] = $this->input->post('password1');
-                $this->users_model->create_user($user);
 
-                redirect(base_url('users'));
+            if ($this->auth_model->user_exists($user['username'])) {
+                $data['user'] = $user;
+                $this->session->set_flashdata([
+                    'message' => 'That username is already taken!',
+                    'message_class' => 'danger'
+                ]);
             }
-            else {
+            elseif ($password1 != $password2) {
                 $data['user'] = $user;
                 $this->session->set_flashdata([
                     'message' => 'The two passwords do not match!',
                     'message_class' => 'danger'
                 ]);
+            }
+            else {
+                $user['password'] = $this->input->post('password1');
+                $this->users_model->create_user($user);
+
+                redirect(base_url('users'));
             }
         }
 

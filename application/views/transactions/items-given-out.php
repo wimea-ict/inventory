@@ -1,7 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-require_once(__DIR__ . '/../partials/page-header.php');
+if (is_ajax_request() == false) {
+    $page = 'items-given-out';
+    require_once(__DIR__ . '/tabbed-nav.php');
+}
 ?>
 
 <div class="row">

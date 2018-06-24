@@ -12,9 +12,30 @@ class Transactions extends CI_Controller {
         $this->load->model(['transactions_model']);
     }
 
+    public function index() {
+        $data['transactions'] = $this->transactions_model->get_new_batches();
+        $content = $this->load->view('transactions/new-batches', $data, TRUE);
+
+        if (is_ajax_request()) {
+            echo $content;
+            return;
+        }
+
+        $this->load->view('main', [
+            'title' => 'Transactions',
+            'content' => $content
+        ]);
+    }
+
     public function new_batches() {
         $data['transactions'] = $this->transactions_model->get_new_batches();
         $content = $this->load->view('transactions/new-batches', $data, TRUE);
+
+        if (is_ajax_request()) {
+            echo $content;
+            return;
+        }
+
         $this->load->view('main', [
             'title' => 'New Batches',
             'content' => $content
@@ -24,6 +45,12 @@ class Transactions extends CI_Controller {
     public function items_returned() {
         $data['transactions'] = $this->transactions_model->get_items_returned();
         $content = $this->load->view('transactions/items-returned', $data, TRUE);
+
+        if (is_ajax_request()) {
+            echo $content;
+            return;
+        }
+
         $this->load->view('main', [
             'title' => 'Returned Items',
             'content' => $content
@@ -34,6 +61,12 @@ class Transactions extends CI_Controller {
         $data['page_heading'] = 'Items Given Out';
         $data['transactions'] = $this->transactions_model->get_items_given_out('pending');
         $content = $this->load->view('transactions/items-given-out', $data, TRUE);
+
+        if (is_ajax_request()) {
+            echo $content;
+            return;
+        }
+
         $this->load->view('main', [
             'title' => 'Items Given Out',
             'content' => $content

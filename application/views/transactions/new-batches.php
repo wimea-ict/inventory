@@ -1,8 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$page_heading = 'New Batches';
-require_once(__DIR__ . '/../partials/page-header.php');
+if (is_ajax_request() == false) {
+    $page = 'new-batches';
+    require_once(__DIR__ . '/tabbed-nav.php');
+}
 ?>
 
 <div class="row">

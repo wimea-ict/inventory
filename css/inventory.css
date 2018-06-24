@@ -1,3 +1,41 @@
+/* Global Styles */
+a {
+    outline: none;
+}
+
+/* Tabbed Navigation */
+.tabbed-nav {
+    border-bottom: 1px solid #ddd;
+    list-style: none;
+    margin: 10px 0 20px 0;
+    padding-left: 0;
+    display: flex;
+}
+.tabbed-nav > li {
+    margin-bottom: -1px;
+}
+.tabbed-nav > li > a {
+    display: block;
+    padding: 10px 15px;
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border-radius: 4px 4px 0 0;
+    border: 1px solid #ddd;
+}
+.tabbed-nav > li.active > a,
+.tabbed-nav > li.active > a:focus,
+.tabbed-nav > li.active > a:hover {
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+}
+.tabbed-nav > li > a:focus,
+.tabbed-nav > li > a:hover {
+    text-decoration: none;
+    background-color: #eee;
+}
+
+/* Form Errors */
 .error {
     width: 100%;
     margin-top: .25rem;

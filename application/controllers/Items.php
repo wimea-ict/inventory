@@ -92,8 +92,15 @@ class Items extends CI_Controller {
             $items = $this->input->post('items[]');
             $quantities = $this->input->post('quantities[]');
 
+            $message = '';  // Message returned to the user.
+
             $batch_items = [];
             for ($i = 0; $i < count($items); ++$i) {
+                if ($quantities[$i] == false) {
+                    // Quantity is zero or wasn't entered at all.
+                    $message = 'Incorrect quantities entered. Please try again.';
+                }
+
                 $batch_items[] = [
                     'id' => $items[$i],
                     'quantity' => $quantities[$i]
@@ -103,13 +110,19 @@ class Items extends CI_Controller {
             $date_brought = $this->input->post('date_brought');
 
             // Check for duplicate selection of items.
-            if (count($items) == count(array_unique($items))) {
+            if (count($items) != count(array_unique($items))) {
+                $message = 'Repetitions detected in items selected. Please try again.';
+            }
+
+            if ($message == '') {
                 $this->items_model->create_new_batch($batch_items, $date_brought);
                 redirect(base_url('transactions/new-batches'));
             }
             else {
-                $_SESSION['message'] = 'Repetitions detected in items selected. Please try again.';
-                $_SESSION['message_class'] = 'danger';
+                $this->session->set_flashdata([
+                    'message' => $message,
+                    'message_class' => 'danger'
+                ]);
 
                 $data['date_brought'] = $date_brought;
             }
@@ -142,8 +155,15 @@ class Items extends CI_Controller {
             $items = $this->input->post('items');
             $quantities = $this->input->post('quantities');
 
+            $message = '';  // Message returned to the user.
+
             $items_given_out = [];
             for ($i = 0; $i < count($items); ++$i) {
+                if ($quantities[$i] == false) {
+                    // Quantity is zero or wasn't entered at all.
+                    $message = 'Incorrect quantities entered. Please try again.';
+                }
+
                 $items_given_out[] = [
                     'id' => $items[$i],
                     'quantity' => $quantities[$i]
@@ -163,18 +183,26 @@ class Items extends CI_Controller {
             $duration_out = "{$duration} {$duration_unit}";
 
             // Check for duplicate selection of items.
-            if (count($items) == count(array_unique($items))) {
+            if (count($items) != count(array_unique($items))) {
+                $message = 'Repetitions detected in items selected. Please try again.';
+            }
+
+            if ($message == '') {
                 $this->items_model->give_out_items($items_given_out, $receiver, $reason, $date_out, $duration_out);
                 redirect(base_url('transactions/items-given-out'));
             }
             else {
-                $_SESSION['message'] = 'Repetitions detected in items selected. Please try again.';
-                $_SESSION['message_class'] = 'danger';
+                $this->session->set_flashdata([
+                    'message' => $message,
+                    'message_class' => 'danger'
+                ]);
 
                 $data = [
                     'receiver' => $receiver,
                     'reason' => $reason,
-                    'date_out' => $date_out
+                    'date_out' => $date_out,
+                    'duration' => $duration,
+                    'duration_unit' => $duration_unit
                 ];
             }
         }
@@ -206,6 +234,12 @@ class Items extends CI_Controller {
 
             $returned_items = [];
             for ($i = 0; $i < count($items); ++$i) {
+                if ($quantities[$i] == false) {
+                    // Quantity is zero or wasn't entered at all.
+                    // Skip this item.
+                    continue;
+                }
+
                 $returned_items[] = [
                     'id' => $items[$i],
                     'quantity' => $quantities[$i]

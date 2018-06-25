@@ -12,19 +12,6 @@ class Auth extends CI_Controller {
         $this->login();
     }
 
-    // TODO: Remove.
-    // public function dummy() {
-    //     $user = [
-    //         'first_name' => 'Robert',
-    //         'other_names' => 'Elvis Odoch',
-    //         'email' => 'robertelvisodoch@gmail.com',
-    //         'username' => 'rodoch',
-    //         'password' => 'dummy',
-    //         'contacts' => '0779322831/0704580010'
-    //     ];
-    //     $this->auth_model->create_user($user);
-    // }
-
     public function login() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $this->input->post('username');

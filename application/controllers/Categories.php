@@ -36,6 +36,7 @@ class Categories extends CI_Controller {
 
             redirect(base_url('categories'));
         }
+
         $data['panel_heading'] = 'Create New Category';
         $content = $this->load->view('categories/create', $data, TRUE);
         $this->load->view('main', [

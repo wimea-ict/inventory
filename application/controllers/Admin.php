@@ -68,10 +68,12 @@ class Admin extends CI_Controller {
     }
 
     private function get_items_need_attention_content($data) {
-        $this->session->set_flashdata([
-            'message' => 'These items are currently not in stock. Am afraid you might have to re-stock them.',
-            'message_class' => 'info'
-        ]);
+        if ($data['num_need_attention']['items'] > 0) {
+            $this->session->set_flashdata([
+                'message' => 'These items are currently not in stock. Am afraid you might have to re-stock them.',
+                'message_class' => 'info'
+            ]);
+        }
 
         $data['items'] = $this->admin_model->get_items_need_attention();
         $content = $this->load->view('admin/need-attention/items', $data, TRUE);
@@ -80,11 +82,13 @@ class Admin extends CI_Controller {
     }
 
     private function get_transactions_need_attention_content($data) {
-        $this->session->set_flashdata([
-            'message' => 'The following items were given out and have exceeded their
-                            expected return date. Please consider reminding the recipients.',
-            'message_class' => 'info'
-        ]);
+        if ($data['num_need_attention']['transactions'] > 0) {
+            $this->session->set_flashdata([
+                'message' => 'The following items were given out and have exceeded their
+                                expected return date. Please consider reminding the recipients.',
+                'message_class' => 'info'
+            ]);
+        }
 
         $data['transactions'] = $this->admin_model->get_transactions_need_attention();
         $content = $this->load->view('admin/need-attention/transactions', $data, TRUE);

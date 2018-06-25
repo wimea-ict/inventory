@@ -33,6 +33,12 @@ $('.tabbed-nav li a').click(function(event) {
     event.preventDefault();
 
     var $this = $(this);
+
+    // If we are currently on this tab, then we are done.
+    if ($this.parent('li').hasClass('active')) {
+        return;
+    }
+
     var $parentRow = $this.parents('div.row');
     var $nextRow = $parentRow.next('div.row');
 

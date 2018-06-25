@@ -39,6 +39,12 @@ a {
     background-color: #eee;
 }
 
+/* Loading Indicator */
+.loading > div {
+    display: flex;
+    justify-content: center;
+}
+
 /* Form Errors */
 .error {
     width: 100%;

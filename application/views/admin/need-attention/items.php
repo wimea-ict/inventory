@@ -9,7 +9,7 @@ if (is_ajax_request() == false) {
 
 <div class="row">
     <div class="col-lg-12">
-        <?php if(isset($_SESSION['message'])): ?>
+        <?php if(isset($_SESSION['message']) && $num_need_attention['items'] > 0): ?>
             <div class="alert alert-dismissable alert-<?= $_SESSION['message_class']; ?>">
                 <button type="button" data-dismiss="alert" aria-hidden="true" class="close">&times;</button>
                 <?= $_SESSION['message']; ?>

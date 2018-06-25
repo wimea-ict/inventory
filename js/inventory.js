@@ -6,19 +6,27 @@ var loadingIndicator = "<div class='row loading'>" +
                             "</div>" +
                         "</div>";
 
-$('#more-items').click(function(event) {
+// Define and call the init function.
+function init() {
+    $('#data-table').DataTable({
+        responsive: true
+    });
+
+    $('.date-picker').datepicker({
+        dateFormat: "yy-mm-dd"
+    });
+
+    validateForms();
+};
+
+init();
+
+// Adding more times to a transaction.
+$('body').on('click', '#more-items', function(event) {
     event.preventDefault();
     
     $('#item').clone().appendTo($('#items')).css({marginTop: '5px'});
     $('#quantity').clone().val('').appendTo($('#quantities')).css({marginTop: '5px'});
-});
-
-$('#data-table').DataTable({
-    responsive: true
-});
-
-$('.date-picker').datepicker({
-    dateFormat: "yy-mm-dd"
 });
 
 $('.tabbed-nav li a').click(function(event) {
@@ -42,12 +50,10 @@ $('.tabbed-nav li a').click(function(event) {
 
             // Show the new content.
             $parentRow.next('div.loading').fadeOut(100, function() {
-                $(this).replaceWith($(html)).slideDown(1000);
+                $(this).replaceWith($(html)).slideDown(600);
 
-                // Activate data tables.
-                $('#data-table').DataTable({
-                    responsive: true
-                });
+                // Re-initialize.
+                init();
             });
         });
     });

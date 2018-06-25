@@ -29,8 +29,8 @@
         <script src="<?= base_url("assets/vendor/jquery-validation-1.17.0/jquery.validate.min.js"); ?>"></script>
 
         <!-- JS for the inventory system -->
-        <script src="<?= base_url("js/inventory.js"); ?>"></script>
         <script src="<?= base_url("js/form-validation.js"); ?>"></script>
+        <script src="<?= base_url("js/inventory.js"); ?>"></script>
 
     </body>
 </html>

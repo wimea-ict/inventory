@@ -1,4 +1,11 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+if (is_ajax_request() == false) {
+    $page = 'return-items';
+    require_once(__DIR__ . '/tabbed-nav.php');
+}
+?>
 
 <div class="row">
     <div class="col-lg-12">

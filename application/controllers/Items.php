@@ -125,8 +125,14 @@ class Items extends CI_Controller {
 
         $data['items'] = $items;
         $content = $this->load->view('items/new-batch', $data, TRUE);
+
+        if (is_ajax_request()) {
+            echo $content;
+            return;
+        }
+
         $this->load->view('main', [
-            'title' => 'Add New Batch',
+            'title' => 'New Transaction',
             'content' => $content
         ]);
     }
@@ -175,8 +181,14 @@ class Items extends CI_Controller {
 
         $data['items'] = $this->items_model->get_items();
         $content = $this->load->view('items/give-out', $data, TRUE);
+
+        if (is_ajax_request()) {
+            echo $content;
+            return;
+        }
+
         $this->load->view('main', [
-            'title' => 'Give Out Items',
+            'title' => 'New Transaction',
             'content' => $content
         ]);
     }
@@ -221,13 +233,17 @@ class Items extends CI_Controller {
             $_SESSION['message'] = 'Please select a transaction to return the items. You can always search by name or email address.';
             $_SESSION['message_class'] = 'info';
 
-            $data['page_heading'] = 'Return Items';
             $data['transactions'] = $this->transactions_model->get_items_given_out('pending');
             $content = $this->load->view('items/return-items', $data, TRUE);
         }
 
+        if (is_ajax_request()) {
+            echo $content;
+            return;
+        }
+
         $this->load->view('main', [
-            'title' => 'Return Items',
+            'title' => 'New Transaction',
             'content' => $content
         ]);
     }

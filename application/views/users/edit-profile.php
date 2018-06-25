@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-lg-8">
         <?php
-        $page_heading = 'Users';
+        $page_heading = 'Profile';
         require_once(__DIR__ . '/../partials/page-header.php');
         ?>
 
@@ -18,9 +18,9 @@
         ?>
 
         <div class="panel panel-default">
-            <div class="panel-heading">Create New User</div>
+            <div class="panel-heading">Edit Profile</div>
             <div class="panel-body">
-                <form action="" method="post" id="create-user-form">
+                <form action="" method="post" id="edit-profile-form">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
@@ -48,27 +48,8 @@
                             <?= isset($user) ? " value='{$user['contacts']}'" : ''; ?> required>
                         <span class="help-block">Separate multiple contacts with the slash(/) character</span>
                     </div>
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" name="username" id="username" class="form-control" minlength="4"
-                            <?= isset($user) ? " value='{$user['username']}'" : ''; ?> required>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" name="password1" id="password" class="form-control" minlength="5" required>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="confirm-password">Confirm Password</label>
-                                <input type="password" name="password2" id="confirm-password" class="form-control" required>
-                            </div>
-                        </div>
-                    </div>
 
-                    <input type="submit" value="Submit" class="btn btn-primary">
+                    <input type="submit" value="Save" class="btn btn-primary">
                 </form>
             </div>
         </div>

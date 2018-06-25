@@ -57,7 +57,6 @@ class Users extends CI_Controller {
             }
         }
 
-        $data['panel_heading'] = 'Create New User';
         $content = $this->load->view('users/create', $data, TRUE);
         $this->load->view('main', [
             'title' => 'Create New User',
@@ -71,6 +70,10 @@ class Users extends CI_Controller {
             show_404();
         }
 
+        if ($user['id'] != $_SESSION['user']['id']) {
+            redirect(base_url('admin/dashboard'));
+        }
+
         $data['user'] = $user;
         $content = $this->load->view('users/profile', $data, TRUE);
         $this->load->view('main', [
@@ -79,15 +82,34 @@ class Users extends CI_Controller {
         ]);
     }
 
-    public function edit($user_id) {
+    public function edit_profile($user_id) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $data = [
+                'first_name' => $this->input->post('first_name'),
+                'other_names' => $this->input->post('other_names'),
+                'contacts' => $this->input->post('contacts'),
+                'email' => $this->input->post('email')
+            ];
+            $this->users_model->update_user($_SESSION['user']['id'], $data);
+
+            $this->session->set_flashdata([
+                'message' => 'You profile has been successfully updated',
+                'message_class' => 'success'
+            ]);
+            redirect(base_url("users/profile/{$_SESSION['user']['id']}"));
+        }
+
         $user = $this->users_model->get_user($user_id);
         if ($user == false) {
             show_404();
         }
 
+        if ($user['id'] != $_SESSION['user']['id']) {
+            redirect(base_url('admin/dashboard'));
+        }
+
         $data['user'] = $user;
-        $data['panel_heading'] = 'Edit User';
-        $content = $this->load->view('users/create', $data, TRUE);
+        $content = $this->load->view('users/edit-profile', $data, TRUE);
         $this->load->view('main', [
             'title' => 'Edit User',
             'content' => $content

@@ -11,6 +11,16 @@
         require_once(__DIR__ . '/../partials/page-header.php');
         ?>
 
+        <?php if(isset($_SESSION['message'])): ?>
+            <div class="alert alert-dismissable alert-<?= $_SESSION['message_class']; ?>">
+                <button type="button" data-dismiss="alert" aria-hidden="true" class="close">&times;</button>
+                <?= $_SESSION['message']; ?>
+            </div>
+        <?php
+            unset($_SESSION['message']);
+            endif;
+        ?>
+
         <table width="100%" class="table table-striped table-bordered table-hover">
             <thead>
                 <col style="width: 20%">

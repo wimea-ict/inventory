@@ -17,12 +17,18 @@ class Users_model extends CI_Model {
         $this->db->query($sql);
     }
 
-    public function update_user($data) {
-
+    public function update_user($user_id, $data) {
+        extract($data);
+        $sql = sprintf("UPDATE users SET first_name = %s, other_names = %s, email = %s, contacts = %s
+                        WHERE id = %d",
+                        $this->db->escape($first_name), $this->db->escape($other_names),
+                        $this->db->escape($email), $this->db->escape($contacts),
+                        $user_id);
+        $this->db->query($sql);
     }
 
     public function get_user($user_id) {
-        $sql = sprintf("SELECT id, CONCAT(first_name, ' ', other_names) AS name, email, username, contacts, date_entered
+        $sql = sprintf("SELECT id, first_name, other_names, CONCAT(first_name, ' ', other_names) AS name, email, username, contacts, date_entered
                         FROM users WHERE id = %d", $user_id);
         $query = $this->db->query($sql);
         if ($query->num_rows() == 0) {

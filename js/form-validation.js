@@ -21,6 +21,9 @@ function validateForms() {
         }
     });
 
+    // Edit profile form.
+    $('#edit-profile-form').validate();
+
     // Creating a new batch.
     $('#new-batch-form').validate();
 

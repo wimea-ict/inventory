@@ -38,7 +38,7 @@ require_once(__DIR__ . '/../../partials/page-header.php');
                         <input type="text" name="date_returned" id="date-returned" class="form-control date-picker" required>
                     </div>
                     <div class="form-group">
-                        <label for="comments">Comments</label>
+                        <label for="comments">Comments <small class="text-muted">(optional)</small></label>
                         <textarea name="comments" id="comments" class="form-control" minlength="5"></textarea>
                     </div>
 

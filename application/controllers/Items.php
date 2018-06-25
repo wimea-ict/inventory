@@ -223,7 +223,7 @@ class Items extends CI_Controller {
 
             $data['page_heading'] = 'Return Items';
             $data['transactions'] = $this->transactions_model->get_items_given_out('pending');
-            $content = $this->load->view('transactions/items-given-out', $data, TRUE);
+            $content = $this->load->view('items/return-items', $data, TRUE);
         }
 
         $this->load->view('main', [

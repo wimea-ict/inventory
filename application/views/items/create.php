@@ -20,7 +20,7 @@
         <div class="panel panel-default">
             <div class="panel-heading"><?= $panel_heading; ?></div>
             <div class="panel-body">
-                <form action="" method="post" id="create-item-form">
+                <form action="<?= base_url('items/create'); ?>" method="post" id="create-item-form">
                     <div class="form-group">
                         <label for="item-name">Item Name</label>
                         <input type="text" name="item_name" id="item-name" class="form-control"

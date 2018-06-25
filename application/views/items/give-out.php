@@ -23,7 +23,7 @@ if (is_ajax_request() == false) {
             <div class="panel-heading">Give Items Out</div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <form action="" method="post" id="give-items-out-form">
+                <form action="<?= base_url('items/give-out'); ?>" method="post" id="give-items-out-form">
                     <fieldset>
                         <legend class="text-success">
                             Items
@@ -77,15 +77,16 @@ if (is_ajax_request() == false) {
                         <label for="duration-out">Duration Out</label>
                         <div class="row">
                             <div class="col-lg-4">
-                                <input type="number" min="1" name="duration" id="duration-out" class="form-control" required>
+                                <input type="number" min="1" name="duration" id="duration-out" class="form-control"
+                                        <?= isset($duration) ? " value='{$duration}'" : '' ?> required>
                             </div>
                             <div class="col-lg-8">
                                 <label for="duration-unit" class="sr-only">Duration Unit</label>
                                 <select name="duration_unit" id="duration-unit" class="form-control" required>
-                                    <option value="day">Day</option>
-                                    <option value="week">Week</option>
-                                    <option value="month">Month</option>
-                                    <option value="year">Year</option>
+                                    <option value="day" <?= (isset($duration_unit) && $duration_unit == 'day') ? "selected" : '' ?>>Day</option>
+                                    <option value="week" <?= (isset($duration_unit) && $duration_unit == 'week') ? "selected" : '' ?>>Week</option>
+                                    <option value="month" <?= (isset($duration_unit) && $duration_unit == 'month') ? "selected" : '' ?>>Month</option>
+                                    <option value="year" <?= (isset($duration_unit) && $duration_unit == 'year') ? "selected" : '' ?>>Year</option>
                                 </select>
                             </div>
                         </div>

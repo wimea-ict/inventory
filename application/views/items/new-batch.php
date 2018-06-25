@@ -23,7 +23,7 @@ if (is_ajax_request() == false) {
             <div class="panel-heading">Add New Batch</div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <form action="" method="post" id="new-batch-form">
+                <form action="<?= base_url('items/new-batch'); ?>" method="post" id="new-batch-form">
                     <fieldset>
                         <legend class="text-success">Items <a href="#" class="pull-right" id="more-items"><i class="fa fa-plus-circle"></i></a></legend>
                         <div class="row">

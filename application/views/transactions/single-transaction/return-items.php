@@ -11,7 +11,7 @@
             <div class="panel-heading">Return Items</div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <form action="" method="post" id="return-items-form">
+                <form action="<?= base_url('items/return-items'); ?>" method="post" id="return-items-form">
                     <fieldset>
                         <legend class="text-success">Items</legend>
                         <div class="row">

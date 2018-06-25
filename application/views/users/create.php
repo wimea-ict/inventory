@@ -20,7 +20,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Create New User</div>
             <div class="panel-body">
-                <form action="" method="post" id="create-user-form">
+                <form action="<?= base_url('users/create'); ?>" method="post" id="create-user-form">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">

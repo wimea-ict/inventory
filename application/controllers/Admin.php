@@ -46,6 +46,7 @@ class Admin extends CI_Controller {
                 'message_class' => 'info'
             ]);
 
+            $data['num_need_attention'] = $num_need_attention;
             $data['transactions'] = $this->admin_model->get_transactions_need_attention();
             $content = $this->load->view('admin/need-attention/transactions', $data, TRUE);
         }
@@ -55,6 +56,7 @@ class Admin extends CI_Controller {
                 'message_class' => 'info'
             ]);
 
+            $data['num_need_attention'] = $num_need_attention;
             $data['items'] = $this->admin_model->get_items_need_attention();
             $content = $this->load->view('admin/need-attention/items', $data, TRUE);
         }

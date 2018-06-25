@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Login - WIMEA-ICT INVENTORY MANAGEMENT SYSTEM</title>
+        <title>Login | WIMEA-ICT Inventory Management System</title>
 
         <!-- Bootstrap core CSS -->
         <link href="<?= base_url("assets/vendor/bootstrap/css/bootstrap.min.css"); ?>" rel="stylesheet">

@@ -11,7 +11,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title><?= $title; ?></title>
+        <title><?= $title; ?> | WIMEA-ICT Inventory Management System</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="<?= base_url("assets/vendor/bootstrap/css/bootstrap.min.css"); ?>" rel="stylesheet">

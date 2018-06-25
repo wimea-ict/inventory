@@ -3,6 +3,11 @@ a {
     outline: none;
 }
 
+.bg-red {
+    color: #fff;
+    background: rgba(255, 0, 0, .7);
+}
+
 .page-header .pull-right {
     margin-top: -12px;
 }

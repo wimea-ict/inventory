@@ -47,11 +47,15 @@ require_once(__DIR__ . '/../../partials/page-header.php');
                 </tr>
                 <tr>
                     <th scope="row">Expected Return Date</th>
-                    <td>
-                        <?php
-                        $duration_out = strtolower($transaction['duration_out']);
-                        $expected_return_date = strtotime($transaction['date_out'] . " +$duration_out");
-                        ?><?= date('F jS, Y', $expected_return_date); ?></td>
+
+                    <?php
+                    $duration_out = strtolower($transaction['duration_out']);
+                    $expected_return_date = new DateTime(date('Y-m-d H:i:s', strtotime("{$transaction['date_out']} +{$duration_out}")));
+                    ?>
+
+                    <td <?= (new DateTime() > $expected_return_date) ? ' class="bg-red"' : ''; ?>>
+                        <?= $expected_return_date->format('F jS, Y'); ?>
+                    </td>
                 </tr>
                 <tr>
                     <th scope="row">Items</th>

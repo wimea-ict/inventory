@@ -55,7 +55,9 @@ require_once(__DIR__ . '/../partials/page-header.php');
                         <td><?= ucwords($item['name']); ?></td>
                         <td><?= ucwords($item['category_name']); ?></td>
                         <td><?= (new DateTime($item['date_entered']))->format('F jS, Y'); ?></td>
-                        <td><?= $item['number_in']; ?></td>
+                        <td<?= ($item['number_in'] == 0) ? ' class="bg-red"' : ''; ?>>
+                            <?= $item['number_in']; ?>
+                        </td>
                         <td><?= $item['number_out']; ?></td>
                         <td><a href="<?= base_url("items/edit/{$item['id']}"); ?>">Edit</a></td>
                     </tr>

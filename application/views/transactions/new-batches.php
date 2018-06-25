@@ -11,8 +11,19 @@ if (is_ajax_request() == false) {
     <div class="col-lg-12">
         <!-- New Batches -->
         <table width="100%" class="table table-striped table-bordered table-hover" id="data-table">
+            <!-- Fix width of the columns -->
+            <colgroup>
+                <col style="width: 7.1833%">
+                <col style="width: 10.2673%">
+                <col style="width: 35.516%">
+                <col style="width: 17.1883%">
+                <col style="width: 18.4045%">
+                <col>
+            </colgroup>
+
             <thead>
                 <tr>
+                    <th>No</th>
                     <th>Batch</th>
                     <th>Items</th>
                     <th>Date Brought</th>
@@ -21,8 +32,12 @@ if (is_ajax_request() == false) {
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($transactions as $batch): ?>
+                <?php
+                $i = 0;
+                foreach ($transactions as $batch):
+                ?>
                     <tr>
+                        <td><?= ++$i; ?></td>
                         <td><?= $batch['id']; ?></td>
                         <td>
                             <?php

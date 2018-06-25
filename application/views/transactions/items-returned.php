@@ -21,6 +21,7 @@ if (is_ajax_request() == false) {
                 <col style="width: 17.2764%">
                 <col>
             </colgroup>
+
             <thead>
                 <tr>
                     <th>No</th>

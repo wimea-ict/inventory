@@ -1,12 +1,12 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-
-$page_heading = 'New Batch';
-require_once(__DIR__ . '/../../partials/page-header.php');
-?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <div class="row">
     <div class="col-lg-8">
+        <?php
+        $page_heading = 'New Batch';
+        require_once(__DIR__ . '/../../partials/page-header.php');
+        ?>
+
         <!-- Items Given Out -->
         <table width="100%" class="table table-striped table-bordered table-hover">
             <thead>

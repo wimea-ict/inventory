@@ -65,6 +65,20 @@ class Users extends CI_Controller {
         ]);
     }
 
+    public function profile($user_id) {
+        $user = $this->users_model->get_user($user_id);
+        if ($user == false) {
+            show_404();
+        }
+
+        $data['user'] = $user;
+        $content = $this->load->view('users/profile', $data, TRUE);
+        $this->load->view('main', [
+            'title' => 'Profile',
+            'content' => $content
+        ]);
+    }
+
     public function edit($user_id) {
         $user = $this->users_model->get_user($user_id);
         if ($user == false) {

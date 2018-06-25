@@ -1,12 +1,12 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-
-$page_heading = 'Categories';
-require_once(__DIR__ . '/../partials/page-header.php');
-?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <div class="row">
     <div class="col-lg-8">
+        <?php
+        $page_heading = 'Categories';
+        require_once(__DIR__ . '/../partials/page-header.php');
+        ?>
+
         <div class="panel panel-default">
             <div class="panel-heading">Create New Category</div>
             <div class="panel-body">

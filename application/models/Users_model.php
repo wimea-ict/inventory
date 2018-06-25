@@ -22,7 +22,7 @@ class Users_model extends CI_Model {
     }
 
     public function get_user($user_id) {
-        $sql = sprintf("SELECT id, first_name, other_names, email, username, contacts, date_entered
+        $sql = sprintf("SELECT id, CONCAT(first_name, ' ', other_names) AS name, email, username, contacts, date_entered
                         FROM users WHERE id = %d", $user_id);
         $query = $this->db->query($sql);
         if ($query->num_rows() == 0) {

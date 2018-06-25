@@ -25,8 +25,8 @@ $('.tabbed-nav li a').click(function(event) {
     event.preventDefault();
 
     var $this = $(this);
-    var $row = $this.parents('div.row');
-    var $nextRow = $row.next('div.row');
+    var $parentRow = $this.parents('div.row');
+    var $nextRow = $parentRow.next('div.row');
 
     // Show loading indicator.
     $nextRow.fadeOut(400, function() {
@@ -37,11 +37,11 @@ $('.tabbed-nav li a').click(function(event) {
             var html = $.parseHTML(data);
 
             // Move the active class to the li parent for this link.
-            $row.find('.active').removeClass('active');
+            $parentRow.find('.active').removeClass('active');
             $this.parents('li').addClass('active');
 
             // Show the new content.
-            $row.next('div.loading').fadeOut(100, function() {
+            $parentRow.next('div.loading').fadeOut(100, function() {
                 $(this).replaceWith($(html)).slideDown(1000);
 
                 // Activate data tables.

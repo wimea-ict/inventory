@@ -28,5 +28,46 @@ class Admin extends CI_Controller {
             'content' => $content
         ]);
     }
+
+    /**
+     * @param $type [items, transactions]
+     */
+    public function need_attention($type = '') {
+        $num_need_attention = $this->admin_model->get_num_need_attention();
+
+        // By default we show the items tab, but if there are no items that need attention,
+        // and there are transactions that need attention, then we show the transactions tab.
+        // Think about that for a moment.
+        if ($type == 'transactions' ||
+            ($num_need_attention['items'] == 0 && $num_need_attention['transactions'] > 0)) {
+            $this->session->set_flashdata([
+                'message' => 'The following items were given out and have exceeded their
+                                expected return date. Please consider reminding the recipients.',
+                'message_class' => 'info'
+            ]);
+
+            $data['transactions'] = $this->admin_model->get_transactions_need_attention();
+            $content = $this->load->view('admin/need-attention/transactions', $data, TRUE);
+        }
+        else {
+            $this->session->set_flashdata([
+                'message' => 'The items are currently not in stock. Am afraid you might have to re-stock them.',
+                'message_class' => 'info'
+            ]);
+
+            $data['items'] = $this->admin_model->get_items_need_attention();
+            $content = $this->load->view('admin/need-attention/items', $data, TRUE);
+        }
+
+        if (is_ajax_request()) {
+            echo $content;
+            return;
+        }
+
+        $this->load->view('main', [
+            'title' => 'Need Attention',
+            'content' => $content
+        ]);
+    }
 }
 ?>

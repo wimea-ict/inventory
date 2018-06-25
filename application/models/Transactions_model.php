@@ -118,7 +118,7 @@ class Transactions_model extends CI_Model {
         return $result['num_transactions'];
     }
 
-    private function get_items_in_transaction(&$transaction, $transaction_type) {
+    public function get_items_in_transaction(&$transaction, $transaction_type) {
         $transaction['items'] = [];
 
         $sql = sprintf("SELECT ti.item_id, ti.quantity, items.name FROM transaction_items ti

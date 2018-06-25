@@ -14,10 +14,10 @@ class Admin_model extends CI_Model {
         // Count items whose quantity is zero.
         $items = $this->items_model->get_items();
 
-        $count_need_attention = 0;
+        $count_need_attention['items'] = 0;
         foreach ($items as $item) {
             if ($item['number_in'] == 0) {
-                ++$count_need_attention;
+                ++$count_need_attention['items'];
             }
         }
 
@@ -25,15 +25,47 @@ class Admin_model extends CI_Model {
         $sql = sprintf("SELECT id, date_out, duration_out FROM items_given_out
                         WHERE status = 'pending'");
         $query = $this->db->query($sql);
-        $results = $query->result_array();
-        foreach ($results as $r) {
-            $expected_return_date = new DateTime(date('Y-m-d H:i:s', strtotime("{$r['date_out']} +{$r['duration_out']}")));
+        $transactions = $query->result_array();
+
+        $count_need_attention['transactions'] = 0;
+        foreach ($transactions as $transaction) {
+            $expected_return_date = new DateTime(date('Y-m-d H:i:s', strtotime("{$transaction['date_out']} +{$transaction['duration_out']}")));
             if (new DateTime() > $expected_return_date) {
-                ++$count_need_attention;
+                ++$count_need_attention['transactions'];
             }
         }
 
         return $count_need_attention;
+    }
+
+    public function get_items_need_attention() {
+        $items = $this->items_model->get_items();
+
+        $need_attention = [];
+        foreach ($items as $item) {
+            if ($item['number_in'] == 0) {
+                $need_attention[] = $item;
+            }
+        }
+
+        return $need_attention;
+    }
+
+    public function get_transactions_need_attention() {
+        $sql = sprintf("SELECT * FROM items_given_out WHERE status = 'pending'");
+        $query = $this->db->query($sql);
+        $transactions = $query->result_array();
+
+        $need_attention = [];
+        foreach ($transactions as $transaction) {
+            $expected_return_date = new DateTime(date('Y-m-d H:i:s', strtotime("{$transaction['date_out']} +{$transaction['duration_out']}")));
+            if (new DateTime() > $expected_return_date) {
+                $this->transactions_model->get_items_in_transaction($transaction, 'items_given_out');
+                $need_attention[] = $transaction;
+            }
+        }
+
+        return $need_attention;
     }
 }
 ?>

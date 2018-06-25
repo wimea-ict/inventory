@@ -83,7 +83,7 @@
                         <i class="fa fa-warning fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge"><?= $num_need_attention; ?></div>
+                        <div class="huge"><?= $num_need_attention['items'] + $num_need_attention['transactions']; ?></div>
                         <div>Need Attention!</div>
                     </div>
                 </div>

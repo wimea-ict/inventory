@@ -140,7 +140,7 @@ class Items extends CI_Controller {
         $content = $this->load->view('items/new-batch', $data, TRUE);
 
         if (is_ajax_request()) {
-            echo $content;
+            echo json_encode(['html' => $content]);
             return;
         }
 
@@ -211,7 +211,7 @@ class Items extends CI_Controller {
         $content = $this->load->view('items/give-out', $data, TRUE);
 
         if (is_ajax_request()) {
-            echo $content;
+            echo json_encode(['html' => $content]);
             return;
         }
 
@@ -272,7 +272,7 @@ class Items extends CI_Controller {
         }
 
         if (is_ajax_request()) {
-            echo $content;
+            echo json_encode(['html' => $content]);
             return;
         }
 

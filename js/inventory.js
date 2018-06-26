@@ -63,7 +63,7 @@ $('.tabbed-nav li a').click(function(event) {
                 init();
             });
 
-            // Show tab action button if any.
+            // Update tab action button.
             if (result.button) {
                 $('#tab-action-button').attr('href', result.button.link).text(result.button.title);
             }

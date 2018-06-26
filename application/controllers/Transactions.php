@@ -17,7 +17,7 @@ class Transactions extends CI_Controller {
         $content = $this->load->view('transactions/new-batches', $data, TRUE);
 
         if (is_ajax_request()) {
-            echo $content;
+            echo json_encode(['html' => $content]);
             return;
         }
 
@@ -32,7 +32,7 @@ class Transactions extends CI_Controller {
         $content = $this->load->view('transactions/new-batches', $data, TRUE);
 
         if (is_ajax_request()) {
-            echo $content;
+            echo json_encode(['html' => $content]);
             return;
         }
 
@@ -47,7 +47,7 @@ class Transactions extends CI_Controller {
         $content = $this->load->view('transactions/items-returned', $data, TRUE);
 
         if (is_ajax_request()) {
-            echo $content;
+            echo json_encode(['html' => $content]);
             return;
         }
 
@@ -63,7 +63,7 @@ class Transactions extends CI_Controller {
         $content = $this->load->view('transactions/items-given-out', $data, TRUE);
 
         if (is_ajax_request()) {
-            echo $content;
+            echo json_encode(['html' => $content]);
             return;
         }
 

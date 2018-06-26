@@ -118,7 +118,7 @@
                             <a href="<?= base_url("reports/items-returned"); ?>">Items Returned</a>
                         </li>
                         <li>
-                            <a href="<?= base_url("reports/items-out"); ?>">Items Given Out</a>
+                            <a href="<?= base_url("reports/items-given-out"); ?>">Items Given Out</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->

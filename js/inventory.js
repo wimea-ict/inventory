@@ -48,7 +48,8 @@ $('.tabbed-nav li a').click(function(event) {
 
         var url = $this.attr('href');
         $.get(url, function(data) {
-            var html = $.parseHTML(data);
+            var result = $.parseJSON(data);
+            var html = $.parseHTML(result.html);
 
             // Move the active class to the li parent for this link.
             $parentRow.find('.active').removeClass('active');
@@ -61,6 +62,11 @@ $('.tabbed-nav li a').click(function(event) {
                 // Re-initialize.
                 init();
             });
+
+            // Show tab action button if any.
+            if (result.button) {
+                $('#tab-action-button').attr('href', result.button.link).text(result.button.title);
+            }
         });
     });
 });

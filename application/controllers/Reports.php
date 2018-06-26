@@ -12,6 +12,19 @@ class Reports extends CI_Controller {
     public function items() {
         $data['items'] = $this->items_model->get_items();
         $content = $this->load->view('reports/items', $data, TRUE);
+
+        if (is_ajax_request()) {
+            echo json_encode([
+                'html' => $content,
+                'button' => [
+                    'title' => 'Download Report',
+                    'link' => base_url('reports/download/items')
+                ]
+            ]);
+
+            return;
+        }
+
         $this->load->view('main', [
             'title' => 'Items',
             'content' => $content
@@ -21,6 +34,19 @@ class Reports extends CI_Controller {
     public function batches() {
         $data['transactions'] = $this->transactions_model->get_new_batches();
         $content = $this->load->view('reports/new-batches', $data, TRUE);
+
+        if (is_ajax_request()) {
+            echo json_encode([
+                'html' => $content,
+                'button' => [
+                    'title' => 'Download Report',
+                    'link' => base_url('reports/download/batches')
+                ]
+            ]);
+
+            return;
+        }
+
         $this->load->view('main', [
             'title' => 'New Batches',
             'content' => $content
@@ -30,6 +56,19 @@ class Reports extends CI_Controller {
     public function items_returned() {
         $data['transactions'] = $this->transactions_model->get_items_returned();
         $content = $this->load->view('reports/items-returned', $data, TRUE);
+
+        if (is_ajax_request()) {
+            echo json_encode([
+                'html' => $content,
+                'button' => [
+                    'title' => 'Download Report',
+                    'link' => base_url('reports/download/items-returned')
+                ]
+            ]);
+
+            return;
+        }
+
         $this->load->view('main', [
             'title' => 'Items Returned',
             'content' => $content
@@ -39,6 +78,19 @@ class Reports extends CI_Controller {
     public function items_given_out() {
         $data['transactions'] = $this->transactions_model->get_items_given_out('pending');
         $content = $this->load->view('reports/items-given-out', $data, TRUE);
+
+        if (is_ajax_request()) {
+            echo json_encode([
+                'html' => $content,
+                'button' => [
+                    'title' => 'Download Report',
+                    'link' => base_url('reports/download/items-given-out')
+                ]
+            ]);
+
+            return;
+        }
+
         $this->load->view('main', [
             'title' => 'Items Given Out',
             'content' => $content

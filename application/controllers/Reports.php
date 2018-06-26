@@ -16,6 +16,7 @@ class Reports extends CI_Controller {
         if (is_ajax_request()) {
             echo json_encode([
                 'html' => $content,
+                'title' => 'Items',
                 'button' => [
                     'title' => 'Download Report',
                     'link' => base_url('reports/download/items')
@@ -38,6 +39,7 @@ class Reports extends CI_Controller {
         if (is_ajax_request()) {
             echo json_encode([
                 'html' => $content,
+                'title' => 'New Batches',
                 'button' => [
                     'title' => 'Download Report',
                     'link' => base_url('reports/download/batches')
@@ -60,6 +62,7 @@ class Reports extends CI_Controller {
         if (is_ajax_request()) {
             echo json_encode([
                 'html' => $content,
+                'title' => 'Items Returned',
                 'button' => [
                     'title' => 'Download Report',
                     'link' => base_url('reports/download/items-returned')
@@ -82,6 +85,7 @@ class Reports extends CI_Controller {
         if (is_ajax_request()) {
             echo json_encode([
                 'html' => $content,
+                'title' => 'Items Given Out',
                 'button' => [
                     'title' => 'Download Report',
                     'link' => base_url('reports/download/items-given-out')

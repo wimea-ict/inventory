@@ -49,13 +49,17 @@ $('.tabbed-nav li a').click(function(event) {
         var url = $this.attr('href');
         $.get(url, function(data) {
             var result = $.parseJSON(data);
-            var html = $.parseHTML(result.html);
+
+            // Update browser tab title and location.
+            document.title = result.title + ' | WIMEA-ICT Inventory Management System';
+            window.history.pushState({"result": result}, "", url);
 
             // Move the active class to the li parent for this link.
             $parentRow.find('.active').removeClass('active');
             $this.parents('li').addClass('active');
 
             // Show the new content.
+            var html = $.parseHTML(result.html);
             $parentRow.next('div.loading').fadeOut(100, function() {
                 $(this).replaceWith($(html)).slideDown(600);
 
@@ -70,3 +74,17 @@ $('.tabbed-nav li a').click(function(event) {
         });
     });
 });
+
+// Back/forward button navigation.
+window.onpopstate = function(event) {console.log(event.state);
+    if (event.state) {
+        var result = event.state.result;
+        var html = $.parseHTML(result.html);
+        $('#content').fadeOut(100, function() {
+            $(this).replaceWith($(html)).slideDown(600);
+
+            // Re-initialize.
+            init();
+        });
+    }
+}

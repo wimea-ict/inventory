@@ -7,7 +7,7 @@ if (is_ajax_request() == false) {
 }
 ?>
 
-<div class="row">
+<div class="row" id="content">
     <div class="col-lg-12">
         <?php require_once(__DIR__ . '/../partials/tables/items-returned.php'); ?>
     </div>

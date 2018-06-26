@@ -7,7 +7,7 @@ if (is_ajax_request() == false) {
 }
 ?>
 
-<div class="row">
+<div class="row" id="content">
     <div class="col-lg-12">
         <?php if(isset($_SESSION['message'])): ?>
             <div class="alert alert-dismissable alert-<?= $_SESSION['message_class']; ?>">

@@ -8,6 +8,10 @@ a {
     background: rgba(255, 0, 0, .7);
 }
 
+.text-green {
+    color: green;
+}
+
 .page-header .pull-right {
     margin-top: -12px;
 }

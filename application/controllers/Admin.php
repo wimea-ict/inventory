@@ -13,7 +13,8 @@ class Admin extends CI_Controller {
             'transactions_model',
             'categories_model',
             'items_model',
-            'admin_model'
+            'admin_model',
+            'users_model'
         ]);
     }
 
@@ -22,6 +23,8 @@ class Admin extends CI_Controller {
         $data['num_need_attention'] = $this->admin_model->get_num_need_attention();
         $data['num_categories'] = $this->categories_model->get_num_categories();
         $data['num_items'] = $this->items_model->get_num_items();
+
+        $data['timeline_items'] = $this->admin_model->get_timeline_items();
         $content = $this->load->view('dashboard', $data, TRUE);
         $this->load->view('main', [
             'title' => 'Dashboard',

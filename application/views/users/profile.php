@@ -4,10 +4,14 @@
     <div class="col-lg-8">
         <?php
         $page_heading = 'Profile';
-        $heading_button = [
-            'title' => 'Edit Profile',
-            'link' => base_url("users/edit-profile/{$_SESSION['user']['id']}")
-        ];
+
+        if ($user['id'] == $_SESSION['user']['id']) {
+            $heading_button = [
+                'title' => 'Edit Profile',
+                'link' => base_url("users/edit-profile/{$_SESSION['user']['id']}")
+            ];
+        }
+
         require_once(__DIR__ . '/../partials/page-header.php');
         ?>
 
@@ -47,10 +51,13 @@
                         ?>
                     </td>
                 </tr>
-                <tr>
-                    <th scope="row">Password</th>
-                    <td><a href="<?= base_url('users/change-password'); ?>">Change Password</a></td>
-                </tr>
+
+                <?php if ($user['id'] == $_SESSION['user']['id']): ?>
+                    <tr>
+                        <th scope="row">Password</th>
+                        <td><a href="<?= base_url('users/change-password'); ?>">Change Password</a></td>
+                    </tr>
+                <?php endif; ?>
             </tbody>
         </table>
         <!-- /.table-responsive -->

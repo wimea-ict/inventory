@@ -70,10 +70,6 @@ class Users extends CI_Controller {
             show_404();
         }
 
-        if ($user['id'] != $_SESSION['user']['id']) {
-            redirect(base_url('admin/dashboard'));
-        }
-
         $data['user'] = $user;
         $content = $this->load->view('users/profile', $data, TRUE);
         $this->load->view('main', [

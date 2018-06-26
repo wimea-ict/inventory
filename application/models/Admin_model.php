@@ -71,5 +71,55 @@ class Admin_model extends CI_Model {
 
         return $need_attention;
     }
+
+    public function get_timeline_items() {
+        $timeline_items = [];
+
+        $users = $this->users_model->get_users();
+        foreach ($users as $user) {
+            $timeline_items[] = $user;
+        }
+
+        $items = $this->items_model->get_items();
+        foreach ($items as $item) {
+            $timeline_items[] = $item;
+        }
+
+        $categories = $this->categories_model->get_categories();
+        foreach ($categories as $category) {
+            $timeline_items[] = $category;
+        }
+
+        $new_batches = $this->transactions_model->get_new_batches();
+        foreach ($new_batches as $transaction) {
+            $timeline_items[] = $transaction;
+        }
+
+        $items_returned = $this->transactions_model->get_items_returned();
+        foreach ($items_returned as $transaction) {
+            $timeline_items[] = $transaction;
+        }
+
+        $items_given_out = $this->transactions_model->get_items_given_out();
+        foreach ($items_given_out as $transaction) {
+            $timeline_items[] = $transaction;
+        }
+
+        // Sort timeline items by date.
+        usort($timeline_items, self::build_sorter('date_entered'));
+
+        return $timeline_items;
+    }
+
+    /**
+     * Closure used for sorting notifications.
+     *
+     * @param $key the field that will be used for sorting.
+     */
+    private static function build_sorter($key) {
+        return function ($a, $b) use ($key) {
+            return new DateTime($a[$key]) < new DateTime($b[$key]);
+        };
+    }
 }
 ?>

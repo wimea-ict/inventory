@@ -29,8 +29,10 @@ class Admin_model extends CI_Model {
 
         $count_need_attention['transactions'] = 0;
         foreach ($transactions as $transaction) {
-            $expected_return_date = new DateTime(date('Y-m-d H:i:s', strtotime("{$transaction['date_out']} +{$transaction['duration_out']}")));
-            if (new DateTime() > $expected_return_date) {
+            $expected_return_date = new DateTime(date('Y-m-d', strtotime("{$transaction['date_out']} +{$transaction['duration_out']}")));
+
+            // We start reporting one day past the expected return date.
+            if (new DateTime() > $expected_return_date->add(new DateInterval('P1D'))) {
                 ++$count_need_attention['transactions'];
             }
         }
@@ -58,8 +60,10 @@ class Admin_model extends CI_Model {
 
         $need_attention = [];
         foreach ($transactions as $transaction) {
-            $expected_return_date = new DateTime(date('Y-m-d H:i:s', strtotime("{$transaction['date_out']} +{$transaction['duration_out']}")));
-            if (new DateTime() > $expected_return_date) {
+            $expected_return_date = new DateTime(date('Y-m-d', strtotime("{$transaction['date_out']} +{$transaction['duration_out']}")));
+
+            // We start reporting one day past the expected return date.
+            if (new DateTime() > $expected_return_date->add(new DateInterval('P1D'))) {
                 $this->transactions_model->get_items_in_transaction($transaction, 'items_given_out');
                 $need_attention[] = $transaction;
             }

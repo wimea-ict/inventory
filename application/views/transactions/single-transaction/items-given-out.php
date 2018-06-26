@@ -50,11 +50,11 @@
 
                     <?php
                     $duration_out = strtolower($transaction['duration_out']);
-                    $expected_return_date = new DateTime(date('Y-m-d H:i:s', strtotime("{$transaction['date_out']} +{$duration_out}")));
+                    $expected_return_date = new DateTime(date('Y-m-d', strtotime("{$transaction['date_out']} +{$duration_out}")));
                     ?>
 
-                    <td <?= (new DateTime() > $expected_return_date) ? ' class="bg-red"' : ''; ?>>
-                        <?= $expected_return_date->format('F jS, Y'); ?>
+                    <td <?= (new DateTime() > $expected_return_date->add(new DateInterval('P1D'))) ? ' class="bg-red"' : ''; ?>>
+                        <?= $expected_return_date->sub(new DateInterval('P1D'))->format('F jS, Y'); ?>
                     </td>
                 </tr>
                 <tr>

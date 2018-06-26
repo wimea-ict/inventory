@@ -112,7 +112,7 @@
                     <?php foreach ($timeline_items as $item): ?>
                         <?php if (isset($item['username'])):  // User Created ?>
                         <li>
-                            <div class="timeline-badge"><i class="fa fa-user-plus"></i>
+                            <div class="timeline-badge danger"><i class="fa fa-user-plus"></i>
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
@@ -127,7 +127,7 @@
                         </li>
                         <?php elseif (isset($item['category_id'])):  // Item Created ?>
                         <li>
-                            <div class="timeline-badge"><i class="fa fa-list"></i>
+                            <div class="timeline-badge success"><i class="fa fa-list"></i>
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
@@ -142,7 +142,7 @@
                         </li>
                         <?php elseif (isset($item['date_out'])):  // Items Given Out ?>
                         <li>
-                            <div class="timeline-badge"><i class="fa fa-angle-double-right"></i>
+                            <div class="timeline-badge warning"><i class="fa fa-angle-double-right"></i>
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
@@ -161,7 +161,7 @@
                         </li>
                         <?php elseif (isset($item['date_returned'])):  // Items Returned ?>
                         <li class="timeline-inverted">
-                            <div class="timeline-badge"><i class="fa fa-angle-double-left"></i>
+                            <div class="timeline-badge info"><i class="fa fa-angle-double-left"></i>
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
@@ -180,7 +180,7 @@
                         </li>
                         <?php elseif (isset($item['date_brought'])):  // New Batch ?>
                         <li class="timeline-inverted">
-                            <div class="timeline-badge"><i class="fa fa-shopping-cart"></i>
+                            <div class="timeline-badge info"><i class="fa fa-shopping-cart"></i>
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
@@ -199,7 +199,7 @@
                         </li>
                         <?php else:  // Category ?>
                         <li>
-                            <div class="timeline-badge"><i class="fa fa-tag"></i>
+                            <div class="timeline-badge primary"><i class="fa fa-tag"></i>
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">

@@ -95,6 +95,11 @@ window.onpopstate = function(event) {
             // Re-initialize.
             init();
         });
+
+        // Update tab action button.
+        if (result.button) {
+            $('#tab-action-button').attr('href', result.button.link).text(result.button.title);
+        }
     }
     else {
         if ($this != null) {

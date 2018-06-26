@@ -29,6 +29,25 @@ $('body').on('click', '#more-items', function(event) {
     $('#quantity').clone().val('').appendTo($('#quantities')).css({marginTop: '5px'});
 });
 
+// Tabbed navigation.
+function updateSideBarNav() {
+    // Clear active state from previous link item.
+    $('ul.nav a.active').removeClass('active');
+
+    var url = window.location;
+    var element = $('ul.nav a').filter(function() {
+        return this.href == url;
+    }).addClass('active').parent();
+
+    while (true) {
+        if (element.is('li')) {
+            element = element.parent().addClass('in').parent();
+        } else {
+            break;
+        }
+    }
+}
+
 $('.tabbed-nav li a').click(function(event) {
     event.preventDefault();
 
@@ -52,6 +71,8 @@ $('.tabbed-nav li a').click(function(event) {
             // Move the active class to the li parent for this link.
             $this.parents('div.row').find('.active').removeClass('active');
             $this.parents('li').addClass('active');
+
+            updateSideBarNav();
 
             // Show the new content.
             var html = $.parseHTML(result.html);
@@ -81,6 +102,8 @@ window.onpopstate = function(event) {
             // Move the active class to the li parent for this link.
             $this.parents('div.row').find('.active').removeClass('active');
             $this.parents('li').addClass('active');
+
+            updateSideBarNav();
         }
     });
 

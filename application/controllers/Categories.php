@@ -13,15 +13,7 @@ class Categories extends CI_Controller {
     }
 
     public function index() {
-        $categories = $this->categories_model->get_categories();
-        if (count($categories) == 0) {
-            $this->session->set_flashdata([
-                'message' => 'There are no categories on record. Please create categories to continue',
-                'message_class' => 'danger'
-            ]);
-        }
-
-        $data['categories'] = $categories;
+        $data['categories'] = $this->categories_model->get_categories();
         $content = $this->load->view('categories/all', $data, TRUE);
         $this->load->view('main', [
             'title' => 'Categories',

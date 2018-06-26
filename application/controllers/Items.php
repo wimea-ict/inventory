@@ -17,14 +17,7 @@ class Items extends CI_Controller {
     }
 
     public function index() {
-        $items = $this->items_model->get_items();
-        if (count($items) == 0) {
-            $this->session->set_flashdata([
-                'message' => 'There are no items on record. Please create items to continue.',
-                'message_class' => 'warning'
-            ]);
-        }
-        $data['items'] = $items;
+        $data['items'] = $this->items_model->get_items();
         $content = $this->load->view('items/all', $data, TRUE);
         $this->load->view('main', [
             'title' => 'Items',
@@ -210,7 +203,15 @@ class Items extends CI_Controller {
             }
         }
 
-        $data['items'] = $this->items_model->get_items();
+        $items = $this->items_model->get_items();
+        if (count($items) == 0) {
+            $this->session->set_flashdata([
+                'message' => 'There are no items on record. Please create items to continue.',
+                'message_class' => 'danger'
+            ]);
+        }
+
+        $data['items'] = $items;
         $content = $this->load->view('items/give-out', $data, TRUE);
 
         if (is_ajax_request()) {

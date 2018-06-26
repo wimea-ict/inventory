@@ -115,5 +115,40 @@ class Users extends CI_Controller {
             'content' => $content
         ]);
     }
+
+    public function change_password() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $old_password = $this->input->post('old_password');
+            $new_password = $this->input->post('password1');
+            if ($new_password != $this->input->post('password2')) {
+                $this->session_setflashdata([
+                    'message' => 'The two passwords do not match',
+                    'message_class' => 'danger'
+                ]);
+            }
+            else {
+                if ($this->users_model->change_password($_SESSION['user']['id'], $old_password, $new_password)) {
+                    $this->session->set_flashdata([
+                        'message' => 'Your password has been successfully changed',
+                        'message_class' => 'success'
+                    ]);
+
+                    redirect(base_url("users/profile/{$_SESSION['user']['id']}"));
+                }
+                else {
+                    $this->session->set_flashdata([
+                        'message' => 'Your old password is not correct',
+                        'message_class' => 'danger'
+                    ]);
+                }
+            }
+        }
+
+        $content = $this->load->view('users/change-password', [], TRUE);
+        $this->load->view('main', [
+            'title' => 'Change Password',
+            'content' => $content
+        ]);
+    }
 }
 ?>

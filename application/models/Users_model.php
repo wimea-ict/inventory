@@ -17,6 +17,22 @@ class Users_model extends CI_Model {
         $this->db->query($sql);
     }
 
+    public function change_password($user_id, $old_password, $new_password) {
+        $sql = sprintf("SELECT passwd FROM users WHERE id = %d", $user_id);
+        $query = $this->db->query($sql);
+        $result = $query->row_array();
+        if (password_verify($old_password, $result['passwd']) == false) {
+            return false;
+        }
+
+        // Change the password.
+        $sql = sprintf("UPDATE users SET passwd = '%s' WHERE id = %d",
+                        password_hash($new_password, PASSWORD_BCRYPT), $user_id);
+        $this->db->query($sql);
+
+        return true;
+    }
+
     public function update_user($user_id, $data) {
         extract($data);
         $sql = sprintf("UPDATE users SET first_name = %s, other_names = %s, email = %s, contacts = %s

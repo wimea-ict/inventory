@@ -47,6 +47,10 @@
                         ?>
                     </td>
                 </tr>
+                <tr>
+                    <th scope="row">Password</th>
+                    <td><a href="<?= base_url('users/change-password'); ?>">Change Password</a></td>
+                </tr>
             </tbody>
         </table>
         <!-- /.table-responsive -->

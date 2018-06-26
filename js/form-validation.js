@@ -21,6 +21,22 @@ function validateForms() {
         }
     });
 
+    // Changing a password.
+    $('#change-password-form').validate({
+        rules: {
+            password2: {
+                required: true,
+                equalTo: '#password1'
+            }
+        },
+        messages: {
+            password2: {
+                required: 'Please confirm password',
+                equalTo: 'The two passwords do not match'
+            }
+        }
+    });
+
     // Edit profile form.
     $('#edit-profile-form').validate();
 

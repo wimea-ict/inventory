@@ -34,16 +34,11 @@ $('.tabbed-nav li a').click(function(event) {
 
     var $this = $(this);
 
-    // If we are currently on this tab, then we are done.
-    if ($this.parent('li').hasClass('active')) {
-        return;
-    }
-
-    var $parentRow = $this.parents('div.row');
-    var $nextRow = $parentRow.next('div.row');
+    // Remove focus from this link.
+    $this.trigger('blur');
 
     // Show loading indicator.
-    $nextRow.fadeOut(400, function() {
+    $('#content').fadeOut(400, function() {
         $(this).replaceWith($(loadingIndicator));
 
         var url = $this.attr('href');
@@ -55,12 +50,12 @@ $('.tabbed-nav li a').click(function(event) {
             window.history.pushState({"result": result}, "", url);
 
             // Move the active class to the li parent for this link.
-            $parentRow.find('.active').removeClass('active');
+            $this.parents('div.row').find('.active').removeClass('active');
             $this.parents('li').addClass('active');
 
             // Show the new content.
             var html = $.parseHTML(result.html);
-            $parentRow.next('div.loading').fadeOut(100, function() {
+            $('div.loading').fadeOut(100, function() {
                 $(this).replaceWith($(html)).slideDown(600);
 
                 // Re-initialize.
@@ -76,9 +71,23 @@ $('.tabbed-nav li a').click(function(event) {
 });
 
 // Back/forward button navigation.
-window.onpopstate = function(event) {console.log(event.state);
+window.onpopstate = function(event) {
+    var $this = null;
+    $('.tabbed-nav li a').each(function(index) {
+        if ($(this).attr('href') == window.location) {
+            // Store reference for later use.
+            $this = $(this);
+
+            // Move the active class to the li parent for this link.
+            $this.parents('div.row').find('.active').removeClass('active');
+            $this.parents('li').addClass('active');
+        }
+    });
+
     if (event.state) {
         var result = event.state.result;
+        this.document.title = result.title;
+
         var html = $.parseHTML(result.html);
         $('#content').fadeOut(100, function() {
             $(this).replaceWith($(html)).slideDown(600);
@@ -86,5 +95,10 @@ window.onpopstate = function(event) {console.log(event.state);
             // Re-initialize.
             init();
         });
+    }
+    else {
+        if ($this != null) {
+            $this.trigger('click');
+        }
     }
 }

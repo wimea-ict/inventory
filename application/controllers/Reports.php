@@ -5,6 +5,10 @@ class Reports extends CI_Controller {
     public function __construct() {
         parent::__construct();
 
+        if ($this->session->has_userdata('user') == false) {
+            redirect(base_url('auth/login'));
+        }
+
         $this->load->model(['reports_model', 'items_model', 'transactions_model']);
         $this->load->helper('download');
     }

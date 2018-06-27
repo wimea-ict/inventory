@@ -5,6 +5,10 @@ class Users extends CI_Controller {
     public function __construct() {
         parent::__construct();
 
+        if ($this->session->has_userdata('user') == false) {
+            redirect(base_url('auth/login'));
+        }
+
         $this->load->model(['users_model', 'auth_model']);
     }
 

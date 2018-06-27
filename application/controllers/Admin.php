@@ -60,7 +60,10 @@ class Admin extends CI_Controller {
         }
 
         if (is_ajax_request()) {
-            echo $content;
+            echo json_encode([
+                'html' => $content,
+                'title' => 'Need Attention'
+            ]);
             return;
         }
 

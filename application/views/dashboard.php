@@ -147,7 +147,7 @@
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
                                     <h4 class="timeline-title">Items Given Out</h4>
-                                    <p><small class="text-muted"><i class="fa fa-clock-o"></i> <?= (new DateTime($item['date_entered']))->format('F jS, Y') ?></small>
+                                    <p><small class="text-muted"><i class="fa fa-clock-o"></i> <?= (new DateTime($item['date_out']))->format('F jS, Y') ?></small>
                                     </p>
                                 </div>
                                 <div class="timeline-body">
@@ -166,7 +166,7 @@
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
                                     <h4 class="timeline-title">Items Returned</h4>
-                                    <p><small class="text-muted"><i class="fa fa-clock-o"></i> <?= (new DateTime($item['date_entered']))->format('F jS, Y') ?></small>
+                                    <p><small class="text-muted"><i class="fa fa-clock-o"></i> <?= (new DateTime($item['date_returned']))->format('F jS, Y') ?></small>
                                     </p>
                                 </div>
                                 <div class="timeline-body">
@@ -185,13 +185,13 @@
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
                                     <h4 class="timeline-title">New Batch Brought</h4>
-                                    <p><small class="text-muted"><i class="fa fa-clock-o"></i> <?= (new DateTime($item['date_entered']))->format('F jS, Y') ?></small>
+                                    <p><small class="text-muted"><i class="fa fa-clock-o"></i> <?= (new DateTime($item['date_brought']))->format('F jS, Y') ?></small>
                                     </p>
                                 </div>
                                 <div class="timeline-body">
                                     <p>
                                         <a href="<?= base_url("transactions/view/new-batch/{$item['id']}"); ?>">
-                                            New batch containing <?= count($item['items']); ?> <?= count($item['items']) > 1 ? "items" : "item"; ?> recorded.
+                                            New batch brought containing <?= count($item['items']); ?> <?= count($item['items']) > 1 ? "items" : "item"; ?>.
                                         </a>
                                     </p>
                                 </div>

@@ -64,7 +64,7 @@ class Admin_model extends CI_Model {
 
             // We start reporting one day past the expected return date.
             if (new DateTime() > $expected_return_date->add(new DateInterval('P1D'))) {
-                $this->transactions_model->get_items_in_transaction($transaction, 'items_given_out');
+                $this->transactions_model->get_items_in_transaction($transaction, 'items_out');
                 $need_attention[] = $transaction;
             }
         }

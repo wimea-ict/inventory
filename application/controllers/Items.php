@@ -44,6 +44,7 @@ class Items extends CI_Controller {
 
         $data['categories'] = $categories;
         $data['panel_heading'] = 'Create New Item';
+        $data['form_action'] = base_url('items/create');
         $content = $this->load->view('items/create', $data, TRUE);
         $this->load->view('main', [
             'title' => 'Create New Item',
@@ -73,6 +74,7 @@ class Items extends CI_Controller {
         $data['item'] = $item;
         $data['categories'] = $this->categories_model->get_categories();
         $data['panel_heading'] = 'Edit Item';
+        $data['form_action'] = base_url("items/edit/{$item_id}");
         $content = $this->load->view('items/create', $data, TRUE);
         $this->load->view('main', [
             'title' => 'Edit Item',

@@ -21,6 +21,21 @@ function init() {
 
 init();
 
+// Only show the first ten timeline items by default.
+$('ul.timeline > li:gt(9)').css({display: 'none'});
+$('<a href="#" class="more-timeline text-center">Load More</a>').insertAfter('ul.timeline');
+
+// Loading more timeline items.
+$('body').on('click', 'a.more-timeline', function(event) {
+     event.preventDefault();
+     $('ul.timeline > li:hidden:lt(10)').css({display: 'block'});
+
+     // If there are no more items to be loaded, hide the load more link.
+     if ($('ul.timeline > li:hidden').length == 0) {
+         $('a.more-timeline').css({display: 'none'});
+     }
+});
+
 // Adding more times to a transaction.
 $('body').on('click', '#more-items', function(event) {
     event.preventDefault();

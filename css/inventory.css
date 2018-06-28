@@ -16,6 +16,15 @@ a {
     margin-top: -12px;
 }
 
+.more-timeline {
+    display: block;
+    padding: 10px 20px;
+    border-radius: 2px;
+    background: #EEEEEE;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
 /* Tabbed Navigation */
 .tabbed-nav {
     border-bottom: 1px solid #ddd;

@@ -75,7 +75,7 @@ class Reports_model extends CI_Model {
     }
 
     public function make_items_given_out_report() {
-        $headers = ['Item', 'Quantity', 'Receiver Name', 'Contacts', 'Comments', 'Date Given'];
+        $headers = ['Item', 'Quantity', 'Receiver Name', 'Contacts', 'Reason', 'Date Given'];
 
         $transactions = $this->transactions_model->get_items_given_out('pending');
 
@@ -87,8 +87,8 @@ class Reports_model extends CI_Model {
                     $item['quantity'],
                     ucwords($transaction['name']),
                     $transaction['contacts'],
-                    ucfirst($transaction['comments']),
-                    (new DateTime($transaction['date_returned']))->format('F jS, Y')
+                    ucfirst($transaction['reason']),
+                    (new DateTime($transaction['date_out']))->format('F jS, Y')
                 ];
             }
         }

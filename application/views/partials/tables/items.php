@@ -19,7 +19,7 @@
             <th>Name</th>
             <th>Category</th>
             <th>Since</th>
-            <th>Number In</th>
+            <th>Available</th>
             <th>Number Out</th>
             <th>Action</th>
         </tr>

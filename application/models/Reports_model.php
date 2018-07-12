@@ -11,7 +11,7 @@ class Reports_model extends CI_Model {
     }
 
     public function make_items_report() {
-        $headers = ['Item', 'Category', 'Since', 'Number In', 'Number Out'];
+        $headers = ['Item', 'Category', 'Since', 'Available', 'Number Out'];
 
         $items = $this->items_model->get_items();
 

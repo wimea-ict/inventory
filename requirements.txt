@@ -1,0 +1,135 @@
+Item
+    - Id
+    - Name
+    - Category
+    - Date entered
+
+New batch
+    - Id
+    - Date brought
+    - Date entered
+
+Item out
+    - Id
+    - Name
+    - Contacts
+    - Reason
+    - Date out
+    - Duration out
+    - Date entered
+
+Item returned
+    - Id
+    - Item Out Id
+    - Date returned
+    - comments
+    - Date entered
+
+Transaction items
+    - Id
+    - Transaction Id
+    - Transaction type (item_out, item_returned, new_batch)
+    - Item Id
+    - Quantity
+
+Category
+    - Id
+    - Name
+    - Date entered
+
+User
+    - First name
+    - Id
+    - Other names
+    - Email
+    - Username
+    - Password
+    - Contacts
+    - Date entered
+
+Tasks
+===============================================================================
+- Create new users [Update users].
+- Create new category [Update category].
+- Create new item [Update item].
+- Record new items.
+- Record given out items.
+- Record returned items (Fill in all the items that where part of the selected transaction. If the Quantity of an item is 0, don't record it).
+- View all items (name, category, since, [in, out] link to see the details).
+- Download items report.
+- View transactions (brought in, given out) for a given item.
+
+Nitty
+======
+- New batch transaction.
+- New items out transaction (User, Items, Date out, Duration)
+- New items in transaction (Items, Date brought)
+
+Timeline
+============
+- New User ([i] fa-user-plus, [p] right)
+- New batch ([i] fa-shoping-cart, [p] right)
+- Items Returned ([i] fa-angle-double-left, [p] right)
+- Items Given Out ([i] fa-angle-double-right, [p] left)
+- New Item ([i] fa-list, [p] left)
+- New Category ([i] fa-tag, [p] left)
+
+Needs attention tab on dashboard.
+=================================
+- Overdue return date.
+- Available tending to zero.
+
+Users
+======
+- System comes with a default user [username: admin, password: admin].
+- After installation system admin should login as this default user and change name, password, email, contacts etc.
+- System admin can then create other users if she wants.
+- Only the system level admin should be allowed to create new users.
+- Each user is responsible for managing their profile.
+- Username can never be changed once a user has been created.
+
+Questions.
+============
+- What happens when an item is partially returned.
+- What reports are needed.
+
+TODO
+- Write a function to update date created for items by using date brought value of the oldest batch containing the item.
+function updateItemDates() {
+    $transactions = $this->transactions_model->get_new_batches();
+
+    // By default, get_new_batches() fetches newest batches first.
+    // Reverse the array.
+    $transactions = array_reverse($transactions);
+
+    $updated_items = [];
+    foreach ($transactions as $transaction) {
+        foreach ($transaction['items'] as $item) {
+            if ( ! in_array($item['id'], $updated_items)) {
+                $sql = sprintf("UPDATE items SET date_entered = '%s'", $transaction['date_brought']);
+                $this->db->query($sql);
+
+                // Add item to the list of updated items.
+                $updated_items[] = $item['id'];
+            }
+        }
+    }
+}
+- Allow users to extend return date for items, then change message in transactions that need attetion.
+    [Please consider reminding the recipients. You can also extend the return date].
+- Use JQuery UI autocomplete for item select input.
+        var availableTags = [];
+        $('select#item > option').each(function(index){availableTags[index] = $(this).text();});
+        $('#item').replaceWith($('<input id="tags" class="form-control">'));
+        $('#tags').autocomplete({source: availableTags});
+
+- Ajaxify the entire left nav.
+- Attach an image for each item.
+- Discourage continued use of the default login.
+
+Reports
+========
+- Items [Name, Category, Since, Number In, Number Out]
+- Batches [Batch, Item, Quantity, Date Brought]
+- Items Returned [Item, Quantity, Name, Contacts, Comments, Date Returned]
+- Items Given Out [Item, Quantity, Name, Contacts, Comments, Date Returned]

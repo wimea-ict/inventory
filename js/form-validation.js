@@ -47,5 +47,8 @@ function validateForms() {
     $('#return-items-form').validate();
 
     // Giving out items.
-    $('#give-items-out-form').validate();
+	$('#give-items-out-form').validate();
+	
+	// Creating a station node.
+	$('#create-node-form').validate();
 }

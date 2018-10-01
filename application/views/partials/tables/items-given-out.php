@@ -7,9 +7,9 @@
         <col style="width: 7.1833%">
         <col style="width: 17.1257%">
         <col style="width: 13.9024%">
-        <col style="width: 11.9512%">
-        <col style="width: 22.2188%">
-        <col style="width: 17.2764%">
+        <col style="width: 13.9512%">
+        <col style="width: 21.2188%">
+        <col style="width: 16.2764%">
         <col>
     </colgroup>
     <thead>

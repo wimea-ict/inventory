@@ -106,6 +106,24 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
+                    <a href="#"><i class="fa fa-bolt fa-fw"></i> Stations<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="<?= base_url("stations/nodes"); ?>">Nodes</a>
+                        </li>
+                        <li>
+                            <a href="<?= base_url("station-node/create"); ?>">Create Node</a>
+                        </li>
+						<li>
+							<a href="<?= base_url("stations/give-out"); ?>">Give Out Station</a>
+						</li>
+						<li>
+							<a href="<?= base_url("stations/index"); ?>">Stations Given Out</a>
+						</li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
                     <a href="#"><i class="fa fa-files-o fa-fw"></i> Reports<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>

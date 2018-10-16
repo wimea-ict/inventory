@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-lg-8">
         <?php
-        $page_heading = '2m Node';
+        $page_heading = $node['name'];
         $heading_button = [
             'title' => 'Add Items',
             'link' => site_url("station-node/add-items/{$node['id']}")

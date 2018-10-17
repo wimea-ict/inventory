@@ -11,7 +11,7 @@ class Station_nodes extends CI_Controller {
 	public function index() {
 		$data = [];
 		$data['nodes'] = $this->station_nodes_model->get_nodes();
-		$content = $this->load->view('stations/nodes', $data, TRUE);
+		$content = $this->load->view('station-nodes/all', $data, TRUE);
 
 		$this->load->view('main', [
 			'title' => 'Nodes',
@@ -22,7 +22,7 @@ class Station_nodes extends CI_Controller {
 	public function node($node_id) {
 		$data = [];
 		$data['node'] = $this->station_nodes_model->get_node($node_id);
-		$content = $this->load->view('stations/node', $data, TRUE);
+		$content = $this->load->view('station-nodes/node', $data, TRUE);
 
 		$this->load->view('main', [
 			'title' => ucwords($data['node']['name']),
@@ -76,7 +76,7 @@ class Station_nodes extends CI_Controller {
 		}
 
 		$data['items'] = $this->items_model->get_items();
-		$content = $this->load->view('nodes/create', $data, TRUE);
+		$content = $this->load->view('station-nodes/create', $data, TRUE);
 
 		$this->load->view('main', [
 			'title' => 'Create Node',
@@ -128,7 +128,7 @@ class Station_nodes extends CI_Controller {
 
 		$data['node'] = $this->station_nodes_model->get_node($node_id);
 		$data['items'] = $this->items_model->get_items();
-		$content = $this->load->view('nodes/add-items', $data, TRUE);
+		$content = $this->load->view('station-nodes/add-items', $data, TRUE);
 
 		$this->load->view('main', [
 			'title' => 'Add Items',

@@ -6,7 +6,7 @@
         $page_heading = $node['name'];
         $heading_button = [
             'title' => 'Add Items',
-            'link' => site_url("station-node/add-items/{$node['id']}")
+            'link' => site_url("station-nodes/add-items/{$node['id']}")
         ];
         require_once(__DIR__ . '/../partials/page-header.php');
         ?>

@@ -20,7 +20,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Add Items - <?= $node['name']; ?></div>
             <div class="panel-body">
-                <form action="<?= site_url("station_node/add-items/{$node['id']}") ?>" method="post" id="create-node-form">
+                <form action="<?= site_url("station-nodes/add-items/{$node['id']}") ?>" method="post" id="create-node-form">
                     <fieldset>
                         <legend class="text-success">
                             Items

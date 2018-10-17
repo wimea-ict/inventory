@@ -27,7 +27,7 @@
 				<td><?= ++$i; ?></td>
 				<td><?= $node['name']; ?></td>
 				<td><?= count($node['items']); ?></td>
-				<td><a href="<?= site_url("stations/node/{$node['id']}"); ?>">Configure</a></td>
+				<td><a href="<?= site_url("station-nodes/node/{$node['id']}"); ?>">Configure</a></td>
 			</tr>
 		<?php endforeach; ?>
     </tbody>

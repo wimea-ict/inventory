@@ -20,7 +20,7 @@
 			<tr>
 				<td><?= ucwords($item['name']); ?></td>
 				<td><?= $item['quantity']; ?></td>
-				<td><a href="<?= site_url("station-node/remove-item/{$node['id']}/{$item['item_id']}"); ?>">Remove</a></td>
+				<td><a href="<?= site_url("station-nodes/remove-item/{$node['id']}/{$item['item_id']}"); ?>">Remove</a></td>
 			</tr>
 		<?php endforeach; ?>
     </tbody>

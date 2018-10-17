@@ -20,7 +20,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Create Node</div>
             <div class="panel-body">
-                <form action="<?= site_url("station-node/create") ?>" method="post" id="create-node-form">
+                <form action="<?= site_url("station-nodes/create") ?>" method="post" id="create-node-form">
                     <div class="form-group">
                         <label for="node-name">Node Name</label>
                         <input type="text" name="node_name" id="node-name" class="form-control"

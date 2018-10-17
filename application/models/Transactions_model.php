@@ -109,6 +109,25 @@ class Transactions_model extends CI_Model {
         return $items_given_out;
     }
 
+	public function get_stations_given_out() {
+		$sql = sprintf("SELECT * FROM stations_given_out ORDER BY date_entered DESC");
+		$query = $this->db->query($sql);
+
+		$stations_given_out = $query->result_array();
+		foreach ($stations_given_out as &$transaction) {
+			$sql = sprintf("SELECT son.node_id, n.name FROM station_out_nodes son
+							LEFT JOIN nodes n ON (n.id = son.node_id)
+							WHERE (station_out_id = %d)", $transaction['id']);
+			$query = $this->db->query($sql);
+			$nodes = $query->result_array();
+
+			$transaction['nodes'] = $nodes;
+		}
+		unset($transaction);
+
+		return $stations_given_out;
+	}
+
     public function get_num_transactions() {
         $sql = sprintf("SELECT COUNT(DISTINCT transaction_id, transaction_type) AS num_transactions
                         FROM transaction_items");

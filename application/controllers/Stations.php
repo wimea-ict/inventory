@@ -10,42 +10,9 @@ class Stations extends CI_Controller {
         }
 
         $this->load->model([
-			'items_model',
-			'stations_model'
+			'stations_model',
+			'station_nodes_model'
         ]);
-	}
-
-	public function index() {
-		$data = [];
-		$data['stations_given_out'] = $this->stations_model->get_stations_given_out();
-        $content = $this->load->view('stations/given-out', $data, TRUE);
-
-        $this->load->view('main', [
-            'title' => 'Stations Given Out',
-            'content' => $content
-        ]);
-	}
-
-	public function node($node_id) {
-		$data = [];
-		$data['node'] = $this->stations_model->get_node($node_id);
-		$content = $this->load->view('stations/node', $data, TRUE);
-
-		$this->load->view('main', [
-			'title' => ucwords($data['node']['name']),
-			'content' => $content
-		]);
-	}
-
-	public function nodes() {
-		$data = [];
-		$data['nodes'] = $this->stations_model->get_nodes();
-		$content = $this->load->view('stations/nodes', $data, TRUE);
-
-		$this->load->view('main', [
-			'title' => 'Nodes',
-			'content' => $content
-		]);
 	}
 
 	public function give_out() {
@@ -73,10 +40,11 @@ class Stations extends CI_Controller {
 			}
 			else {
 				$this->stations_model->give_out($nodes, $num_stations, $receiver, $country, $date_out);
+				redirect(site_url('transactions/stations-given-out'));
 			}
 		}
 
-		$nodes = $this->stations_model->get_nodes(false);
+		$nodes = $this->station_nodes_model->get_nodes(false);
 		$countries = $this->stations_model->get_countries();
         if (count($countries) == 0) {
             $this->session->set_flashdata([

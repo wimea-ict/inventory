@@ -1,11 +1,33 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Station_node extends CI_Controller {
+class Station_nodes extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 
-		$this->load->model(['items_model', 'stations_model', 'station_node_model']);
+		$this->load->model(['items_model', 'station_nodes_model']);
+	}
+
+	public function index() {
+		$data = [];
+		$data['nodes'] = $this->station_nodes_model->get_nodes();
+		$content = $this->load->view('stations/nodes', $data, TRUE);
+
+		$this->load->view('main', [
+			'title' => 'Nodes',
+			'content' => $content
+		]);
+	}
+
+	public function node($node_id) {
+		$data = [];
+		$data['node'] = $this->station_nodes_model->get_node($node_id);
+		$content = $this->load->view('stations/node', $data, TRUE);
+
+		$this->load->view('main', [
+			'title' => ucwords($data['node']['name']),
+			'content' => $content
+		]);
 	}
 
 	public function create() {
@@ -38,8 +60,8 @@ class Station_node extends CI_Controller {
             }
 
             if ($message == '') {
-                $this->station_node_model->create_node($name, $node_items);
-                redirect(site_url('stations/nodes'));
+                $this->station_nodes_model->create_node($name, $node_items);
+                redirect(site_url('station-nodes'));
             }
             else {
                 $this->session->set_flashdata([
@@ -89,8 +111,8 @@ class Station_node extends CI_Controller {
             }
 
             if ($message == '') {
-                $this->station_node_model->add_items($node_id, $added_items);
-                redirect(site_url("stations/node/{$node_id}"));
+                $this->station_nodes_model->add_items($node_id, $added_items);
+                redirect(site_url("station-nodes/node/{$node_id}"));
             }
             else {
                 $this->session->set_flashdata([
@@ -104,7 +126,7 @@ class Station_node extends CI_Controller {
             }
 		}
 
-		$data['node'] = $this->stations_model->get_node($node_id);
+		$data['node'] = $this->station_nodes_model->get_node($node_id);
 		$data['items'] = $this->items_model->get_items();
 		$content = $this->load->view('nodes/add-items', $data, TRUE);
 
@@ -115,13 +137,13 @@ class Station_node extends CI_Controller {
 	}
 
 	public function remove_item($node_id, $item_id) {
-		$this->station_node_model->remove_item($node_id, $item_id);
+		$this->station_nodes_model->remove_item($node_id, $item_id);
 
 		$this->session->set_flashdata([
 			'message' => 'Item successfully removed.',
 			'message_class' => 'success'
 		]);
-		redirect(site_url("stations/node/{$node_id}"));
+		redirect(site_url("station-nodes/node/{$node_id}"));
 	}
 }
 ?>

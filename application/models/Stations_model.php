@@ -14,49 +14,6 @@ class Stations_model extends CI_Model {
 		return $results;
 	}
 
-	public function get_node($node_id) {
-		// Get the node
-		$sql = sprintf("SELECT * FROM nodes WHERE id = %d", $node_id);
-		$query = $this->db->query($sql);
-		$node = $query->row_array();
-
-		// Get it's items
-		$this->get_node_items($node);
-
-		return $node;
-	}
-
-	public function get_nodes($include_items = true) {
-		// Get the nodes.
-		$sql = sprintf("SELECT * FROM nodes");
-		$query = $this->db->query($sql);
-		$nodes = $query->result_array();
-
-		if ($include_items) {
-			// Get the items in each node.
-			foreach ($nodes as &$node) {
-				$this->get_node_items($node);
-			}
-			unset($node);
-		}
-		
-		return $nodes;
-	}
-
-    public function get_node_items(&$node) {
-        $node['items'] = [];
-
-        $sql = sprintf("SELECT ni.item_id, ni.quantity, items.name FROM node_items ni
-                        LEFT JOIN items ON(ni.item_id = items.id)
-                        WHERE (node_id = %d)", $node['id']);
-        $query = $this->db->query($sql);
-
-        $results = $query->result_array();
-        foreach ($results as $r) {
-            $node['items'][] = $r;
-        }
-	}
-
 	public function give_out($nodes, $num_stations, $receiver, $country, $date_out) {
 		// Record the transaction.
 		$sql = sprintf("INSERT INTO stations_given_out (name, email, contacts, country, number_out, date_out)
@@ -74,24 +31,5 @@ class Stations_model extends CI_Model {
 							$station_out_id, $node_id);
 			$this->db->query($sql);
 		}
-	}
-
-	public function get_stations_given_out() {
-		$sql = sprintf("SELECT * FROM stations_given_out");
-		$query = $this->db->query($sql);
-
-		$stations_given_out = $query->result_array();
-		foreach ($stations_given_out as &$transaction) {
-			$sql = sprintf("SELECT son.node_id, n.name FROM station_out_nodes son
-							LEFT JOIN nodes n ON (n.id = son.node_id)
-							WHERE (station_out_id = %d)", $transaction['id']);
-			$query = $this->db->query($sql);
-			$nodes = $query->result_array();
-
-			$transaction['nodes'] = $nodes;
-		}
-		unset($transaction);
-
-		return $stations_given_out;
 	}
 }

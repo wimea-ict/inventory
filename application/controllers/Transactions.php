@@ -85,6 +85,17 @@ class Transactions extends CI_Controller {
         ]);
     }
 
+	public function stations_given_out() {
+		$data = [];
+		$data['stations_given_out'] = $this->transactions_model->get_stations_given_out();
+        $content = $this->load->view('transactions/stations-given-out', $data, TRUE);
+
+        $this->load->view('main', [
+            'title' => 'Stations Given Out',
+            'content' => $content
+        ]);
+	}
+
     public function view($transaction_type, $transaction_id) {
         $transaction_type = str_replace('-', '_', $transaction_type);
 

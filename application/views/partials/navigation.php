@@ -47,6 +47,9 @@
                         <li>
                             <a href="<?= site_url("items/give-out"); ?>">Give Out Items</a>
                         </li>
+						<li>
+							<a href="<?= site_url("stations/give-out"); ?>">Give Out Station</a>
+						</li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
@@ -62,6 +65,9 @@
                         <li>
                             <a href="<?= site_url("transactions/items-given-out"); ?>">Items Given Out</a>
                         </li>
+						<li>
+							<a href="<?= site_url("transactions/stations-given-out"); ?>">Stations Given Out</a>
+						</li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
@@ -90,6 +96,18 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
+                    <a href="#"><i class="fa fa-share-alt fa-fw"></i> Nodes<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="<?= site_url("station-nodes"); ?>">View Nodes</a>
+                        </li>
+                        <li>
+                            <a href="<?= site_url("station-nodes/create"); ?>">Create New Node</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
                     <a href="#"><i class="fa fa-users fa-fw"></i> Users<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
@@ -102,24 +120,6 @@
                                 <a href="<?= site_url("users/create"); ?>">Create New User</a>
                             </li>
                         <?php endif; ?>
-                    </ul>
-                    <!-- /.nav-second-level -->
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-bolt fa-fw"></i> Stations<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="<?= site_url("stations/nodes"); ?>">Nodes</a>
-                        </li>
-                        <li>
-                            <a href="<?= site_url("station-node/create"); ?>">Create Node</a>
-                        </li>
-						<li>
-							<a href="<?= site_url("stations/give-out"); ?>">Give Out Station</a>
-						</li>
-						<li>
-							<a href="<?= site_url("stations/index"); ?>">Stations Given Out</a>
-						</li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>

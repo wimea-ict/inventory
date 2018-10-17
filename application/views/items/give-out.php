@@ -23,7 +23,7 @@ if (is_ajax_request() == false) {
             <div class="panel-heading">Give Items Out</div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <form action="<?= base_url('items/give-out'); ?>" method="post" id="give-items-out-form">
+                <form action="<?= site_url('items/give-out'); ?>" method="post" id="give-items-out-form">
                     <fieldset>
                         <legend class="text-success">
                             Items

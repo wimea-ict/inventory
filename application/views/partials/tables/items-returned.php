@@ -49,7 +49,7 @@
                 </td>
                 <td><?= $transaction['comments']; ?></td>
                 <td><?= (new DateTime($transaction['date_returned']))->format('F jS, Y'); ?></td>
-                <td><a href="<?= base_url("transactions/view/items-returned/{$transaction['id']}"); ?>">View</a></td>
+                <td><a href="<?= site_url("transactions/view/items-returned/{$transaction['id']}"); ?>">View</a></td>
             </tr>
         <?php endforeach; ?>
     </tbody>

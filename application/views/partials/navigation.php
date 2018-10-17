@@ -19,9 +19,9 @@
                 <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="<?= base_url("users/profile/{$_SESSION['user']['id']}"); ?>"><i class="fa fa-user fa-fw"></i> Profile</a></li>
+                <li><a href="<?= site_url("users/profile/{$_SESSION['user']['id']}"); ?>"><i class="fa fa-user fa-fw"></i> Profile</a></li>
                 <li class="divider"></li>
-                <li><a href="<?= base_url("auth/logout"); ?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+                <li><a href="<?= site_url("auth/logout"); ?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
             </ul>
             <!-- /.dropdown-user -->
         </li>
@@ -33,19 +33,19 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li>
-                    <a href="<?= base_url("admin/dashboard"); ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    <a href="<?= site_url("admin/dashboard"); ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-plus-square fa-fw"></i> New Transaction<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="<?= base_url("items/new-batch"); ?>">New Batch</a>
+                            <a href="<?= site_url("items/new-batch"); ?>">New Batch</a>
                         </li>
                         <li>
-                            <a href="<?= base_url("items/return-items"); ?>">Return Items</a>
+                            <a href="<?= site_url("items/return-items"); ?>">Return Items</a>
                         </li>
                         <li>
-                            <a href="<?= base_url("items/give-out"); ?>">Give Out Items</a>
+                            <a href="<?= site_url("items/give-out"); ?>">Give Out Items</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
@@ -54,13 +54,13 @@
                     <a href="#"><i class="fa fa-exchange fa-fw"></i> Transactions<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="<?= base_url("transactions/new-batches"); ?>">New Batches</a>
+                            <a href="<?= site_url("transactions/new-batches"); ?>">New Batches</a>
                         </li>
                         <li>
-                            <a href="<?= base_url("transactions/items-returned"); ?>">Items Returned</a>
+                            <a href="<?= site_url("transactions/items-returned"); ?>">Items Returned</a>
                         </li>
                         <li>
-                            <a href="<?= base_url("transactions/items-given-out"); ?>">Items Given Out</a>
+                            <a href="<?= site_url("transactions/items-given-out"); ?>">Items Given Out</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
@@ -69,10 +69,10 @@
                     <a href="#"><i class="fa fa-tags fa-fw"></i> Categories<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="<?= base_url("categories"); ?>">View Categories</a>
+                            <a href="<?= site_url("categories"); ?>">View Categories</a>
                         </li>
                         <li>
-                            <a href="<?= base_url("categories/create"); ?>">Create New Category</a>
+                            <a href="<?= site_url("categories/create"); ?>">Create New Category</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
@@ -81,10 +81,10 @@
                     <a href="#"><i class="fa fa-list fa-fw"></i> Items<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="<?= base_url("items"); ?>">View Items</a>
+                            <a href="<?= site_url("items"); ?>">View Items</a>
                         </li>
                         <li>
-                            <a href="<?= base_url("items/create"); ?>">Create New Item</a>
+                            <a href="<?= site_url("items/create"); ?>">Create New Item</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
@@ -93,13 +93,13 @@
                     <a href="#"><i class="fa fa-users fa-fw"></i> Users<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="<?= base_url("users"); ?>">View Users</a>
+                            <a href="<?= site_url("users"); ?>">View Users</a>
                         </li>
 
                         <!-- Only allow the default admin to create new users. -->
                         <?php if ($_SESSION['user']['username'] == 'admin'): ?>
                             <li>
-                                <a href="<?= base_url("users/create"); ?>">Create New User</a>
+                                <a href="<?= site_url("users/create"); ?>">Create New User</a>
                             </li>
                         <?php endif; ?>
                     </ul>
@@ -109,16 +109,16 @@
                     <a href="#"><i class="fa fa-bolt fa-fw"></i> Stations<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="<?= base_url("stations/nodes"); ?>">Nodes</a>
+                            <a href="<?= site_url("stations/nodes"); ?>">Nodes</a>
                         </li>
                         <li>
-                            <a href="<?= base_url("station-node/create"); ?>">Create Node</a>
+                            <a href="<?= site_url("station-node/create"); ?>">Create Node</a>
                         </li>
 						<li>
-							<a href="<?= base_url("stations/give-out"); ?>">Give Out Station</a>
+							<a href="<?= site_url("stations/give-out"); ?>">Give Out Station</a>
 						</li>
 						<li>
-							<a href="<?= base_url("stations/index"); ?>">Stations Given Out</a>
+							<a href="<?= site_url("stations/index"); ?>">Stations Given Out</a>
 						</li>
                     </ul>
                     <!-- /.nav-second-level -->
@@ -127,16 +127,16 @@
                     <a href="#"><i class="fa fa-files-o fa-fw"></i> Reports<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="<?= base_url("reports/items"); ?>">All Items</a>
+                            <a href="<?= site_url("reports/items"); ?>">All Items</a>
                         </li>
                         <li>
-                            <a href="<?= base_url("reports/batches"); ?>">Batches</a>
+                            <a href="<?= site_url("reports/batches"); ?>">Batches</a>
                         </li>
                         <li>
-                            <a href="<?= base_url("reports/items-returned"); ?>">Items Returned</a>
+                            <a href="<?= site_url("reports/items-returned"); ?>">Items Returned</a>
                         </li>
                         <li>
-                            <a href="<?= base_url("reports/items-given-out"); ?>">Items Given Out</a>
+                            <a href="<?= site_url("reports/items-given-out"); ?>">Items Given Out</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->

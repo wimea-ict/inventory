@@ -10,7 +10,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Create New Category</div>
             <div class="panel-body">
-                <form action="<?= base_url('categories/create'); ?>" method="post" id="create-category-form">
+                <form action="<?= site_url('categories/create'); ?>" method="post" id="create-category-form">
                     <div class="form-group">
                         <label for="category-name">Category Name</label>
                         <input type="text" name="category_name" id="category-name" class="form-control"

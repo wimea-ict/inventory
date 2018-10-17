@@ -38,7 +38,7 @@
                     <?= $item['number_in']; ?>
                 </td>
                 <td><?= $item['number_out']; ?></td>
-                <td><a href="<?= base_url("items/edit/{$item['id']}"); ?>">Edit</a></td>
+                <td><a href="<?= site_url("items/edit/{$item['id']}"); ?>">Edit</a></td>
             </tr>
         <?php endforeach; ?>
     </tbody>

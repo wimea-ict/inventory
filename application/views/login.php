@@ -15,7 +15,7 @@
     </head>
 
     <body>
-        <form action="<?= base_url("auth/login"); ?>" method="post">
+        <form action="<?= site_url("auth/login"); ?>" method="post">
             <?php if (isset($_SESSION['message'])): ?>
                 <div class="alert alert-dismissable alert-info">
                     <button type="button" data-dismiss="alert" aria-hidden="true" class="close">&times;</button>

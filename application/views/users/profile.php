@@ -8,7 +8,7 @@
         if ($user['id'] == $_SESSION['user']['id']) {
             $heading_button = [
                 'title' => 'Edit Profile',
-                'link' => base_url("users/edit-profile/{$_SESSION['user']['id']}")
+                'link' => site_url("users/edit-profile/{$_SESSION['user']['id']}")
             ];
         }
 
@@ -55,7 +55,7 @@
                 <?php if ($user['id'] == $_SESSION['user']['id']): ?>
                     <tr>
                         <th scope="row">Password</th>
-                        <td><a href="<?= base_url('users/change-password'); ?>">Change Password</a></td>
+                        <td><a href="<?= site_url('users/change-password'); ?>">Change Password</a></td>
                     </tr>
                 <?php endif; ?>
             </tbody>

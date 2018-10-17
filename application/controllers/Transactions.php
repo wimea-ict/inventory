@@ -6,7 +6,7 @@ class Transactions extends CI_Controller {
         parent::__construct();
 
         if ($this->session->has_userdata('user') == false) {
-            redirect(base_url('auth/login'));
+            redirect(site_url('auth/login'));
         }
 
         $this->load->model(['transactions_model']);

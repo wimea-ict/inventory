@@ -6,7 +6,7 @@ class Reports extends CI_Controller {
         parent::__construct();
 
         if ($this->session->has_userdata('user') == false) {
-            redirect(base_url('auth/login'));
+            redirect(site_url('auth/login'));
         }
 
         $this->load->model(['reports_model', 'items_model', 'transactions_model']);
@@ -23,7 +23,7 @@ class Reports extends CI_Controller {
                 'title' => 'Items',
                 'button' => [
                     'title' => 'Download Report',
-                    'link' => base_url('reports/download/items')
+                    'link' => site_url('reports/download/items')
                 ]
             ]);
 
@@ -46,7 +46,7 @@ class Reports extends CI_Controller {
                 'title' => 'New Batches',
                 'button' => [
                     'title' => 'Download Report',
-                    'link' => base_url('reports/download/batches')
+                    'link' => site_url('reports/download/batches')
                 ]
             ]);
 
@@ -69,7 +69,7 @@ class Reports extends CI_Controller {
                 'title' => 'Items Returned',
                 'button' => [
                     'title' => 'Download Report',
-                    'link' => base_url('reports/download/items-returned')
+                    'link' => site_url('reports/download/items-returned')
                 ]
             ]);
 
@@ -92,7 +92,7 @@ class Reports extends CI_Controller {
                 'title' => 'Items Given Out',
                 'button' => [
                     'title' => 'Download Report',
-                    'link' => base_url('reports/download/items-given-out')
+                    'link' => site_url('reports/download/items-given-out')
                 ]
             ]);
 

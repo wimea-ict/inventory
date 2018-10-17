@@ -20,7 +20,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Edit Profile</div>
             <div class="panel-body">
-                <form action="<?= base_url("users/edit-profile/{$_SESSION['user']['id']}") ?>" method="post" id="edit-profile-form">
+                <form action="<?= site_url("users/edit-profile/{$_SESSION['user']['id']}") ?>" method="post" id="edit-profile-form">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">

@@ -6,7 +6,7 @@ class Users extends CI_Controller {
         parent::__construct();
 
         if ($this->session->has_userdata('user') == false) {
-            redirect(base_url('auth/login'));
+            redirect(site_url('auth/login'));
         }
 
         $this->load->model(['users_model', 'auth_model']);
@@ -23,7 +23,7 @@ class Users extends CI_Controller {
 
     public function create() {
         if ($_SESSION['user']['username'] != 'admin') {
-            redirect(base_url('admin/dashboard'));
+            redirect(site_url('admin/dashboard'));
         }
 
         $data = [];
@@ -57,7 +57,7 @@ class Users extends CI_Controller {
                 $user['password'] = $this->input->post('password1');
                 $this->users_model->create_user($user);
 
-                redirect(base_url('users'));
+                redirect(site_url('users'));
             }
         }
 
@@ -96,7 +96,7 @@ class Users extends CI_Controller {
                 'message' => 'You profile has been successfully updated',
                 'message_class' => 'success'
             ]);
-            redirect(base_url("users/profile/{$_SESSION['user']['id']}"));
+            redirect(site_url("users/profile/{$_SESSION['user']['id']}"));
         }
 
         $user = $this->users_model->get_user($user_id);
@@ -105,13 +105,13 @@ class Users extends CI_Controller {
         }
 
         if ($user['id'] != $_SESSION['user']['id']) {
-            redirect(base_url('admin/dashboard'));
+            redirect(site_url('admin/dashboard'));
         }
 
         $data['user'] = $user;
         $content = $this->load->view('users/edit-profile', $data, TRUE);
         $this->load->view('main', [
-            'title' => 'Edit User',
+            'title' => 'Edit Profile',
             'content' => $content
         ]);
     }
@@ -133,7 +133,7 @@ class Users extends CI_Controller {
                         'message_class' => 'success'
                     ]);
 
-                    redirect(base_url("users/profile/{$_SESSION['user']['id']}"));
+                    redirect(site_url("users/profile/{$_SESSION['user']['id']}"));
                 }
                 else {
                     $this->session->set_flashdata([

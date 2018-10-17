@@ -6,7 +6,7 @@
         $page_heading = 'Items';
         $heading_button = [
             'title' => 'New Item',
-            'link' => base_url('items/create')
+            'link' => site_url('items/create')
         ];
         require_once(__DIR__ . '/../partials/page-header.php');
         ?>

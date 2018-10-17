@@ -6,7 +6,7 @@ class Items extends CI_Controller {
         parent::__construct();
 
         if ($this->session->has_userdata('user') == false) {
-            redirect(base_url('auth/login'));
+            redirect(site_url('auth/login'));
         }
 
         $this->load->model([
@@ -31,7 +31,7 @@ class Items extends CI_Controller {
             $item_name = $this->input->post('item_name');
             $this->items_model->create_item($item_name, $category_id);
 
-            redirect(base_url('items'));
+            redirect(site_url('items'));
         }
 
         $categories = $this->categories_model->get_categories();
@@ -44,7 +44,7 @@ class Items extends CI_Controller {
 
         $data['categories'] = $categories;
         $data['panel_heading'] = 'Create New Item';
-        $data['form_action'] = base_url('items/create');
+        $data['form_action'] = site_url('items/create');
         $content = $this->load->view('items/create', $data, TRUE);
         $this->load->view('main', [
             'title' => 'Create New Item',
@@ -63,7 +63,7 @@ class Items extends CI_Controller {
                 'message' => 'Item successfully updated.',
                 'message_class' => 'success'
             ]);
-            redirect(base_url('items'));
+            redirect(site_url('items'));
         }
 
         $item = $this->items_model->get_item($item_id);
@@ -74,7 +74,7 @@ class Items extends CI_Controller {
         $data['item'] = $item;
         $data['categories'] = $this->categories_model->get_categories();
         $data['panel_heading'] = 'Edit Item';
-        $data['form_action'] = base_url("items/edit/{$item_id}");
+        $data['form_action'] = site_url("items/edit/{$item_id}");
         $content = $this->load->view('items/create', $data, TRUE);
         $this->load->view('main', [
             'title' => 'Edit Item',
@@ -111,7 +111,7 @@ class Items extends CI_Controller {
 
             if ($message == '') {
                 $this->items_model->create_new_batch($batch_items, $date_brought);
-                redirect(base_url('transactions/new-batches'));
+                redirect(site_url('transactions/new-batches'));
             }
             else {
                 $this->session->set_flashdata([
@@ -187,7 +187,7 @@ class Items extends CI_Controller {
 
             if ($message == '') {
                 $this->items_model->give_out_items($items_given_out, $receiver, $reason, $date_out, $duration_out);
-                redirect(base_url('transactions/items-given-out'));
+                redirect(site_url('transactions/items-given-out'));
             }
             else {
                 $this->session->set_flashdata([
@@ -260,7 +260,7 @@ class Items extends CI_Controller {
             $items_out_id = $this->input->post('items_out_id');
             $this->items_model->return_items($items_out_id, $returned_items, $date_returned, $comments);
 
-            redirect(base_url("transactions/items-returned"));
+            redirect(site_url("transactions/items-returned"));
         }
 
         if ($transaction_id != NULL) {

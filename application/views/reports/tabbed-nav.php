@@ -4,16 +4,16 @@
     <div class="col-lg-12">
         <ul class="tabbed-nav">
             <li <?= ($page == 'items') ? ' class="active"' : ''; ?>>
-                <a href="<?= base_url("reports/items"); ?>">Items</a>
+                <a href="<?= site_url("reports/items"); ?>">Items</a>
             </li>
             <li <?= ($page == 'batches') ? ' class="active"' : ''; ?>>
-                <a href="<?= base_url("reports/batches"); ?>">New Batches</a>
+                <a href="<?= site_url("reports/batches"); ?>">New Batches</a>
             </li>
             <li <?= ($page == 'items-returned') ? ' class="active"' : ''; ?>>
-                <a href="<?= base_url("reports/items-returned"); ?>">Items Returned</a>
+                <a href="<?= site_url("reports/items-returned"); ?>">Items Returned</a>
             </li>
             <li <?= ($page == 'items-given-out') ? ' class="active"' : ''; ?>>
-                <a href="<?= base_url("reports/items-given-out"); ?>">Items Given Out</a>
+                <a href="<?= site_url("reports/items-given-out"); ?>">Items Given Out</a>
             </li>
 
             <?php if (isset($tab_action_button)): ?>

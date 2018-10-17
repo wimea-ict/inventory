@@ -20,7 +20,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Change Password</div>
             <div class="panel-body">
-                <form action="<?= base_url('users/change-password'); ?>" method="post" id="change-password-form">
+                <form action="<?= site_url('users/change-password'); ?>" method="post" id="change-password-form">
                     <div class="form-group">
                         <label for="old-password">Old Password</label>
                         <input type="password" name="old_password" id="old-password" class="form-control" required>

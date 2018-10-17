@@ -4,13 +4,13 @@
     <div class="col-lg-12">
         <ul class="tabbed-nav">
             <li <?= ($page == 'new-batch') ? ' class="active"' : ''; ?>>
-                <a href="<?= base_url("items/new-batch"); ?>">New Batch</a>
+                <a href="<?= site_url("items/new-batch"); ?>">New Batch</a>
             </li>
             <li <?= ($page == 'return-items') ? ' class="active"' : ''; ?>>
-                <a href="<?= base_url("items/return-items"); ?>">Return Items</a>
+                <a href="<?= site_url("items/return-items"); ?>">Return Items</a>
             </li>
             <li <?= ($page == 'give-out-items') ? ' class="active"' : ''; ?>>
-                <a href="<?= base_url("items/give-out"); ?>">Give Out Items</a>
+                <a href="<?= site_url("items/give-out"); ?>">Give Out Items</a>
             </li>
         </ul>
     </div>

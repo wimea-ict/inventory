@@ -19,23 +19,23 @@ class Auth extends CI_Controller {
             $user = $this->auth_model->check($username, $password);
             if ($user) {
                 $this->session->set_userdata('user', $user);
-                redirect(base_url("admin/dashboard"));
+                redirect(site_url("admin/dashboard"));
             }
             else {
                 $this->session->set_flashdata('message', 'Invalid username/password.');
-                redirect(base_url("auth/login"));
+                redirect(site_url("auth/login"));
             }
         }
 
         if ($this->session->has_userdata('user')) {
-            redirect(base_url("admin/dashboard"));
+            redirect(site_url("admin/dashboard"));
         }
         $this->load->view('login');
     }
 
     public function logout() {
         $this->session->unset_userdata('user');
-        redirect(base_url("auth/login"));
+        redirect(site_url("auth/login"));
     }
 }
 ?>

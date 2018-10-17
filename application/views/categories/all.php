@@ -6,7 +6,7 @@
         $page_heading = 'Categories';
         $heading_button = [
             'title' => 'New Category',
-            'link' => base_url('categories/create')
+            'link' => site_url('categories/create')
         ];
         require_once(__DIR__ . '/../partials/page-header.php');
         ?>
@@ -51,7 +51,7 @@
                         <td><?= ucwords($category['name']); ?></td>
                         <td><?= $category['num_items']; ?></td>
                         <td><?= (new DateTime($category['date_entered']))->format('F jS, Y'); ?></td>
-                        <td><a href="<?= base_url("categories/edit/{$category['id']}"); ?>">Edit</a></td>
+                        <td><a href="<?= site_url("categories/edit/{$category['id']}"); ?>">Edit</a></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

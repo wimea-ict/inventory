@@ -22,7 +22,7 @@
                     </div>
                 </div>
             </div>
-            <a href="<?= base_url("categories"); ?>">
+            <a href="<?= site_url("categories"); ?>">
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -44,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            <a href="<?= base_url("items"); ?>">
+            <a href="<?= site_url("items"); ?>">
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -66,7 +66,7 @@
                     </div>
                 </div>
             </div>
-            <a href="<?= base_url("transactions"); ?>">
+            <a href="<?= site_url("transactions"); ?>">
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -88,7 +88,7 @@
                     </div>
                 </div>
             </div>
-            <a href="<?= base_url("admin/need-attention"); ?>">
+            <a href="<?= site_url("admin/need-attention"); ?>">
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -121,7 +121,7 @@
                                     </p>
                                 </div>
                                 <div class="timeline-body">
-                                    <p>Name: <a href="<?= base_url("users/profile/{$item['id']}"); ?>"><?= ucwords($item['name']); ?></a>.</p>
+                                    <p>Name: <a href="<?= site_url("users/profile/{$item['id']}"); ?>"><?= ucwords($item['name']); ?></a>.</p>
                                 </div>
                             </div>
                         </li>
@@ -152,7 +152,7 @@
                                 </div>
                                 <div class="timeline-body">
                                     <p>
-                                        <a href="<?= base_url("transactions/view/items-out/{$item['id']}") ?>">
+                                        <a href="<?= site_url("transactions/view/items-out/{$item['id']}") ?>">
                                             <?= count($item['items']); ?> <?= count($item['items']) > 1 ? "items" : "item"; ?> given out to <?= ucwords($item['name']); ?>.
                                         </a>
                                     </p>
@@ -171,7 +171,7 @@
                                 </div>
                                 <div class="timeline-body">
                                     <p>
-                                        <a href="<?= base_url("transactions/view/items-returned/{$item['id']}"); ?>">
+                                        <a href="<?= site_url("transactions/view/items-returned/{$item['id']}"); ?>">
                                             <?= count($item['items']); ?> <?= count($item['items']) > 1 ? "items" : "item"; ?> returned by <?= ucwords($item['name']); ?>.
                                         </a>
                                     </p>
@@ -190,7 +190,7 @@
                                 </div>
                                 <div class="timeline-body">
                                     <p>
-                                        <a href="<?= base_url("transactions/view/new-batch/{$item['id']}"); ?>">
+                                        <a href="<?= site_url("transactions/view/new-batch/{$item['id']}"); ?>">
                                             New batch brought containing <?= count($item['items']); ?> <?= count($item['items']) > 1 ? "items" : "item"; ?>.
                                         </a>
                                     </p>

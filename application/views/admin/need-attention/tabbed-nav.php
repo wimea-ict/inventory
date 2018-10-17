@@ -4,7 +4,7 @@
     <div class="col-lg-12">
         <ul class="tabbed-nav">
             <li <?= ($page == 'items') ? ' class="active"' : ''; ?>>
-                <a href="<?= base_url("admin/need-attention/items"); ?>">
+                <a href="<?= site_url("admin/need-attention/items"); ?>">
                     Items
                     <?php if ($num_need_attention['items'] > 0): ?>
                         <span class="badge"><?= $num_need_attention['items']; ?></span>
@@ -12,7 +12,7 @@
                 </a>
             </li>
             <li <?= ($page == 'transactions') ? ' class="active"' : ''; ?>>
-                <a href="<?= base_url("admin/need-attention/transactions"); ?>">
+                <a href="<?= site_url("admin/need-attention/transactions"); ?>">
                     Transactions
                     <?php if ($num_need_attention['transactions'] > 0): ?>
                         <span class="badge"><?= $num_need_attention['transactions']; ?></span>

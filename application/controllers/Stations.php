@@ -6,7 +6,7 @@ class Stations extends CI_Controller {
 		parent::__construct();
 
         if ($this->session->has_userdata('user') == false) {
-            redirect(base_url('auth/login'));
+            redirect(site_url('auth/login'));
         }
 
         $this->load->model([
@@ -32,7 +32,7 @@ class Stations extends CI_Controller {
 		$content = $this->load->view('stations/node', $data, TRUE);
 
 		$this->load->view('main', [
-			'title' => '2m Node',
+			'title' => ucwords($data['node']['name']),
 			'content' => $content
 		]);
 	}

@@ -6,7 +6,7 @@
         $page_heading = 'Nodes';
         $heading_button = [
             'title' => 'New Node',
-            'link' => base_url('station-node/create')
+            'link' => site_url('station-node/create')
         ];
         require_once(__DIR__ . '/../partials/page-header.php');
         ?>

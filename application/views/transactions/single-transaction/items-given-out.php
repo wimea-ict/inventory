@@ -82,7 +82,7 @@
         </table>
         <!-- /.table-responsive -->
 
-        <a href="<?= base_url("items/return-items/{$transaction['id']}"); ?>" class="btn btn-block btn-primary">Return Items</a>
+        <a href="<?= site_url("items/return-items/{$transaction['id']}"); ?>" class="btn btn-block btn-primary">Return Items</a>
     </div>
     <!-- /.col-lg-8 -->
 </div>

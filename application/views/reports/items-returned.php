@@ -6,7 +6,7 @@ if (is_ajax_request() == false) {
 
     $tab_action_button = [
         'title' => 'Download Report',
-        'link' => base_url('reports/download/items-returned')
+        'link' => site_url('reports/download/items-returned')
     ];
     require_once(__DIR__ . '/tabbed-nav.php');
 }

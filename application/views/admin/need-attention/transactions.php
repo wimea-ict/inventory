@@ -74,8 +74,8 @@ if (is_ajax_request() == false) {
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu pull-right" role="menu">
-                                    <li><a href="<?= base_url("transactions/view/items-out/{$transaction['id']}"); ?>">View</a></li>
-                                    <li><a href="<?= base_url("items/return-items/{$transaction['id']}"); ?>">Return Items</a></li>
+                                    <li><a href="<?= site_url("transactions/view/items-out/{$transaction['id']}"); ?>">View</a></li>
+                                    <li><a href="<?= site_url("items/return-items/{$transaction['id']}"); ?>">Return Items</a></li>
                                 </ul>
                             </div>
                         </td>

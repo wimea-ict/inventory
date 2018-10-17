@@ -7,7 +7,7 @@
         if ($_SESSION['user']['username'] == 'admin') {
             $heading_button = [
                 'title' => 'New User',
-                'link' => base_url('users/create')
+                'link' => site_url('users/create')
             ];
         }
         require_once(__DIR__ . '/../partials/page-header.php');

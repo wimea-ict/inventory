@@ -6,7 +6,7 @@ class Categories extends CI_Controller {
         parent::__construct();
 
         if ($this->session->has_userdata('user') == false) {
-            redirect(base_url('auth/login'));
+            redirect(site_url('auth/login'));
         }
 
         $this->load->model(['categories_model']);
@@ -26,7 +26,7 @@ class Categories extends CI_Controller {
             $category_name = $this->input->post('category_name');
             $this->categories_model->create_category($category_name);
 
-            redirect(base_url('categories'));
+            redirect(site_url('categories'));
         }
 
         $data['panel_heading'] = 'Create New Category';
@@ -47,7 +47,7 @@ class Categories extends CI_Controller {
                 'message' => 'Category successfully updated.',
                 'message_class' => 'success'
             ]);
-            redirect(base_url('categories'));
+            redirect(site_url('categories'));
         }
 
         $category = $this->categories_model->get_category($category_id);

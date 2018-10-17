@@ -146,24 +146,19 @@ class Items_model extends CI_Model {
 	}
 
 	private function get_num_items_given_out_to_stations($item_id) {
-		// Get station given out.
-		$sql = sprintf("SELECT id, number_out FROM stations_given_out");
+		// If this is confusing, then refer to a simpler version in the git logs
+		// and search for the commit with the message "Preliminary code for giving out stations"
+		$sql = sprintf("SELECT so.id, so.number_out, son.node_id, ni.quantity
+						FROM stations_given_out so
+						LEFT JOIN station_out_nodes son ON son.station_out_id = so.id
+						LEFT JOIN node_items ni ON son.node_id = ni.node_id
+						WHERE (ni.item_id = %d)", $item_id);
 		$query = $this->db->query($sql);
-		$stations_given_out = $query->result_array();
+		$results = $query->result_array();
 
 		$total_quantity = 0;
-		foreach ($stations_given_out as $station) {
-			$sql = sprintf("SELECT node_id FROM station_out_nodes WHERE station_out_id = %d", $station['id']);
-			$query = $this->db->query($sql);
-			$station_nodes = $query->result_array();
-			foreach ($station_nodes as $node) {
-				$sql = sprintf("SELECT quantity FROM node_items
-								WHERE (node_id = %d AND item_id = %d)",
-								$node['node_id'], $item_id);
-				$query = $this->db->query($sql);
-				$result = $query->row_array();
-				$total_quantity += ($result['quantity'] * $station['number_out']);
-			}
+		foreach ($results as $result) {
+			$total_quantity += ($result['quantity'] * $result['number_out']);
 		}
 
 		return $total_quantity;

@@ -47,8 +47,12 @@ class Items_model extends CI_Model {
         //      Number In = (number_in_new_batches - number_given_out + number_returned)
         //      Number Out = (items_given_out - items_returned)
         foreach ($items as &$item) {
-            $number_in_new_batches = $this->get_number_in_transaction_type($item['id'], 'new_batch');
-            $number_given_out = $this->get_number_in_transaction_type($item['id'], 'items_out');
+			$number_in_new_batches = $this->get_number_in_transaction_type($item['id'], 'new_batch');
+
+			$number_given_out_to_stations = $this->get_num_items_given_out_to_stations($item['id']);
+			$number_given_out = $this->get_number_in_transaction_type($item['id'], 'items_out');
+			$number_given_out += $number_given_out_to_stations;
+
             $number_returned = $this->get_number_in_transaction_type($item['id'], 'items_returned');
             
             $item['number_in'] = ($number_in_new_batches - $number_given_out + $number_returned);
@@ -139,7 +143,31 @@ class Items_model extends CI_Model {
         }
 
         return $number;
-    }
+	}
+
+	private function get_num_items_given_out_to_stations($item_id) {
+		// Get station given out.
+		$sql = sprintf("SELECT id, number_out FROM stations_given_out");
+		$query = $this->db->query($sql);
+		$stations_given_out = $query->result_array();
+
+		$total_quantity = 0;
+		foreach ($stations_given_out as $station) {
+			$sql = sprintf("SELECT node_id FROM station_out_nodes WHERE station_out_id = %d", $station['id']);
+			$query = $this->db->query($sql);
+			$station_nodes = $query->result_array();
+			foreach ($station_nodes as $node) {
+				$sql = sprintf("SELECT quantity FROM node_items
+								WHERE (node_id = %d AND item_id = %d)",
+								$node['node_id'], $item_id);
+				$query = $this->db->query($sql);
+				$result = $query->row_array();
+				$total_quantity += ($result['quantity'] * $station['number_out']);
+			}
+		}
+
+		return $total_quantity;
+	}
 
     private function record_transaction_items($transaction_id, $transaction_type, $items) {
         foreach ($items as $item) {

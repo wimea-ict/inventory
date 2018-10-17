@@ -21,36 +21,33 @@
         <div class="panel panel-default">
             <div class="panel-heading">Give Out Station</div>
             <div class="panel-body">
-                <form action="<?= site_url('stations/give-out'); ?>" method="post" id="deploy-station-form">
-                    <div class="row">
-						<p style="margin-left: 1em;" class="text-success">Select Nodes</p>
+                <form action="<?= site_url('stations/give-out'); ?>" method="post" id="give-out-station-form">
+                    <div class="row" style="margin-bottom: 1em;">
+						<p style="margin-left: 1em; font-weight: bold;" class="text-success">Select Nodes</p>
+						<?php
+							$num_nodes = count($nodes);
+							$num_cols = 2;
+							$nodes_per_col = ceil($num_nodes / $num_cols);
+						?>
                         <div class="col-lg-6">
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked>
-								<label class="form-check-label" for="defaultCheck1">
-									Sink Node + Gateway
-								</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-								<label class="form-check-label" for="defaultCheck2">
-									Ground Node
-								</label>
-							</div>
+							<?php for ($i = 0; $i < $nodes_per_col; ++$i): ?>
+								<div class="form-check">
+									<input type="checkbox" name="nodes[]" value="<?= $nodes[$i]['id']; ?>" id="defaultCheck1" class="form-check-input" >
+									<label class="form-check-label" for="defaultCheck1">
+										<?= ucwords($nodes[$i]['name']); ?>
+									</label>
+								</div>
+							<?php endfor; ?>
                         </div>
                         <div class="col-lg-6">
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-								<label class="form-check-label" for="defaultCheck1">
-									10m Node
-								</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-								<label class="form-check-label" for="defaultCheck2">
-									2m Node
-								</label>
-							</div>
+							<?php for ($i = $nodes_per_col; $i < $num_nodes; ++$i): ?>
+								<div class="form-check">
+								<input type="checkbox" name="nodes[]" value="<?= $nodes[$i]['id']; ?>" id="defaultCheck1" class="form-check-input" >
+									<label class="form-check-label" for="defaultCheck1">
+										<?= ucwords($nodes[$i]['name']); ?>
+									</label>
+								</div>
+							<?php endfor; ?>
                         </div>
                     </div>
                     <div class="form-group">
@@ -72,20 +69,23 @@
                     <div class="form-group">
                         <label for="num-stations" class="text-success">Number of Stations</label>
                         <input type="number" name="num_stations" id="num-stations" class="form-control"
-                            <?= isset($user) ? " value='1" : ''; ?> min="1" required>
+                            value="<?= isset($num_stations) ? $num_stations : ''; ?>" min="1" required>
                     </div>
 					<div class="form-group" id="country">
 						<label for="country" class="text-success">Country</label>
 						<select name="country" id="country" class="form-control" required>
-							<option value="">Uganda</option>
-							<option value="">Tanzania</option>
-							<option value="">South Sudan</option>
+							<?php foreach ($countries as $country): ?>
+								<option value="<?= $country['id']; ?>"
+									<?= (isset($country_id) && $country_id == $country['id']) ? ' selected': ''; ?>>
+									<?= ucwords($country['name']); ?>
+								</option>
+							<?php endforeach; ?>
 						</select>
 					</div>
                     <div class="form-group">
-                        <label for="date-deploy" class="text-success">Date of Deployment</label>
-                        <input type="text" name="date_deploy" id="date-deploy" class="form-control date-picker"
-                                <?= isset($date_deploy) ? " value='{$date_deploy}'" : '' ?> required>
+                        <label for="date-out" class="text-success">Date Out</label>
+                        <input type="text" name="date_out" id="date-out" class="form-control date-picker"
+                                value="<?= isset($date_out) ? $date_out : '' ?>" required>
                     </div>
 
                     <input type="submit" value="Submit" class="btn btn-primary">

@@ -51,4 +51,7 @@ function validateForms() {
 	
 	// Creating a station node.
 	$('#create-node-form').validate();
+
+	// Giving out a station.
+	$('#give-out-station-form').validate();
 }

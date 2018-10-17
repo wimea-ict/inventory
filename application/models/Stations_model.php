@@ -75,4 +75,23 @@ class Stations_model extends CI_Model {
 			$this->db->query($sql);
 		}
 	}
+
+	public function get_stations_given_out() {
+		$sql = sprintf("SELECT * FROM stations_given_out");
+		$query = $this->db->query($sql);
+
+		$stations_given_out = $query->result_array();
+		foreach ($stations_given_out as &$transaction) {
+			$sql = sprintf("SELECT son.node_id, n.name FROM station_out_nodes son
+							LEFT JOIN nodes n ON (n.id = son.node_id)
+							WHERE (station_out_id = %d)", $transaction['id']);
+			$query = $this->db->query($sql);
+			$nodes = $query->result_array();
+
+			$transaction['nodes'] = $nodes;
+		}
+		unset($transaction);
+
+		return $stations_given_out;
+	}
 }

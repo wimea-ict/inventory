@@ -4,11 +4,12 @@
 <table width="100%" class="table table-striped table-bordered table-hover" id="data-table">
     <!-- Fix the width of the columns. -->
     <colgroup>
-        <col style="width: 7.1833%">
-        <col style="width: 17.1257%">
+        <col style="width: 6.1833%">
+        <col style="width: 19.1257%">
         <col style="width: 13.9024%">
-        <col style="width: 13.9512%">
-        <col style="width: 21.2188%">
+		<col style="width: 20%">
+        <col style="width: 11.9512%">
+		<col style="width: 12%">
         <col>
     </colgroup>
     <thead>
@@ -16,43 +17,37 @@
             <th>No</th>
             <th>Nodes</th>
             <th>Incharge</th>
+			<th>Email</th>
             <th>Contacts</th>
+			<th>Number of Stations</th>
             <th>Date Out</th>
         </tr>
     </thead>
     <tbody>
+		<?php
+		$i = 0;
+		foreach ($stations_given_out as $transaction): ?>
 		<tr>
-			<td>1</td>
+			<td><?= ++$i; ?></td>
 			<td>
-				- Sink Node + Gateway<br>
-				- 2m Node<br>
-				- 10m Node<br>
+				<?php foreach ($transaction['nodes'] as $node): ?>
+					- <?= $node['name']; ?><br>
+				<?php endforeach; ?>
 			</td>
-			<td>Sewante</td>
+			<td><?= ucwords($transaction['name']); ?></td>
+			<td><?= $transaction['email']; ?></td>
 			<td>
-				0798 831 321<br>
-				0798 831 321
+				<?php
+				$contacts = explode('/', $transaction['contacts']);
+				foreach ($contacts as $contact) {
+					echo "{$contact}<br>";
+				}
+				?>
 			</td>
-			<td>
-				January 26th, 2017
-			</td>
+			<td><?= $transaction['number_out']; ?></td>
+			<td><?= (new DateTime($transaction['date_out']))->format('F jS, Y'); ?></td>
 		</tr>
-		<tr>
-			<td>2</td>
-			<td>
-				- Sink Node + Gateway<br>
-				- 2m Node<br>
-				- 10m Node<br>
-			</td>
-			<td>Sewante</td>
-			<td>
-				0798 831 321<br>
-				0798 831 321
-			</td>
-			<td>
-				January 26th, 2017
-			</td>
-		</tr>
+		<?php endforeach; ?>
     </tbody>
 </table>
 <!-- /.table-responsive -->

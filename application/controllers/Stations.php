@@ -17,6 +17,7 @@ class Stations extends CI_Controller {
 
 	public function index() {
 		$data = [];
+		$data['stations_given_out'] = $this->stations_model->get_stations_given_out();
         $content = $this->load->view('stations/given-out', $data, TRUE);
 
         $this->load->view('main', [

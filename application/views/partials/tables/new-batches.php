@@ -32,9 +32,18 @@
                 <td><?= $batch['id']; ?></td>
                 <td>
                     <?php
-                    for ($j = 0; $j < count($batch['items']); ++$j) {
+					$num_items = count($batch['items']);
+
+					// Only show the first four items
+                    for ($j = 0; $j < $num_items; ++$j) {
+						if ($j == 4) { break; }
+
                         echo '- ' . ucwords($batch['items'][$j]['name']) . "<br>";
-                    }
+					}
+
+					if ($num_items > 4) {
+						echo '<span style="color: green;">+ Plus ' . ($num_items - 4) . ' more</span>';
+					}
                     ?>
                 </td>
                 <td><?= (new DateTime($batch['date_brought']))->format('F jS, Y'); ?></td>

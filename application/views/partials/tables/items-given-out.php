@@ -32,9 +32,18 @@
                 <td><?= ++$i; ?></td>
                 <td>
                     <?php
-                    for ($j = 0; $j < count($transaction['items']); ++$j) {
+					$num_items = count($transaction['items']);
+
+					// Only show the first four items.
+                    for ($j = 0; $j < $num_items; ++$j) {
+						if ($j == 4) { break; }
+
                         echo "- " . ucwords($transaction['items'][$j]['name']) . "<br>";
                     }
+
+					if ($num_items > 4) {
+						echo '<span style="color: green;">+ Plus ' . ($num_items - 4) . ' more</span>';
+					}
                     ?>
                 </td>
                 <td><?= $transaction['name']; ?></td>

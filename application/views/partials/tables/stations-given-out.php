@@ -30,9 +30,20 @@
 		<tr>
 			<td><?= ++$i; ?></td>
 			<td>
-				<?php foreach ($transaction['nodes'] as $node): ?>
-					- <?= $node['name']; ?><br>
-				<?php endforeach; ?>
+				<?php
+				$num_nodes = count($transaction['nodes']);
+
+				// Only show the first four items.
+				for ($j = 0; $j < $num_nodes; ++$j) {
+					if ($j == 4) { break; }
+
+					echo "- " . ucwords($transaction['nodes'][$j]['name']) . "<br>";
+				}
+
+				if ($num_nodes > 4) {
+					echo '<span style="color: green;">+ Plus ' . ($num_nodes - 4) . ' more</span>';
+				}
+				?>
 			</td>
 			<td><?= ucwords($transaction['name']); ?></td>
 			<td><?= $transaction['email']; ?></td>

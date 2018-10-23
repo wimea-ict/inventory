@@ -5,6 +5,10 @@ class Station_nodes extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 
+        if ($this->session->has_userdata('user') == false) {
+            redirect(site_url('auth/login'));
+        }
+
 		$this->load->model(['items_model', 'station_nodes_model']);
 	}
 

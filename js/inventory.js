@@ -13,7 +13,8 @@ function init() {
     });
 
     $('.date-picker').datepicker({
-        dateFormat: "yy-mm-dd"
+		dateFormat: "yy-mm-dd",
+		maxDate: new Date()
     });
 
     validateForms();

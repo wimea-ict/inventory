@@ -14,11 +14,6 @@
         <script src="<?= base_url("assets/vendor/datatables-plugins/dataTables.bootstrap.min.js"); ?>"></script>
         <script src="<?= base_url("assets/vendor/datatables-responsive/dataTables.responsive.js"); ?>"></script>
 
-        <!-- Morris Charts JavaScript -->
-        <script src="<?= base_url("assets/vendor/raphael/raphael.min.js"); ?>"></script>
-        <script src="<?= base_url("assets/vendor/morrisjs/morris.min.js"); ?>"></script>
-        <script src="<?= base_url("js/data/morris-data.js"); ?>"></script>
-
         <!-- Custom Theme JavaScript -->
         <script src="<?= base_url("js/sb-admin-2.js"); ?>"></script>
 

@@ -14,7 +14,12 @@ if (is_ajax_request() == false) {
 
 <div class="row" id="content">
     <div class="col-lg-12">
-        <?php require_once(__DIR__ . '/../partials/tables/items.php'); ?>
+        <?php
+        $page_heading = 'All Items';
+		require_once(__DIR__ . '/../partials/page-header.php');
+
+		require_once(__DIR__ . '/../partials/tables/items.php');
+		?>
     </div>
     <!-- /.col-lg-12 -->
 </div>

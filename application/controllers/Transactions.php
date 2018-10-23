@@ -90,6 +90,14 @@ class Transactions extends CI_Controller {
 		$data['stations_given_out'] = $this->transactions_model->get_stations_given_out();
         $content = $this->load->view('transactions/stations-given-out', $data, TRUE);
 
+        if (is_ajax_request()) {
+            echo json_encode([
+                'html' => $content,
+                'title' => 'Stations Given Out'
+            ]);
+            return;
+        }
+
         $this->load->view('main', [
             'title' => 'Stations Given Out',
             'content' => $content

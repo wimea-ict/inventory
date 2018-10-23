@@ -25,11 +25,15 @@ a {
     text-transform: uppercase;
 }
 
+.page-header {
+	margin-top: 30px;
+}
+
 /* Tabbed Navigation */
 .tabbed-nav {
     border-bottom: 1px solid #ddd;
     list-style: none;
-    margin: 10px 0 20px 0;
+    margin: 10px 0 10px 0;
     padding-left: 0;
     display: flex;
 }

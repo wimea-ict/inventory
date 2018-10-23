@@ -63,6 +63,14 @@ class Stations extends CI_Controller {
 		$data['countries'] = $countries;
 		$content = $this->load->view('stations/give-out', $data, TRUE);
 
+        if (is_ajax_request()) {
+            echo json_encode([
+                'html' => $content,
+                'title' => 'New Transaction'
+            ]);
+            return;
+        }
+
 		$this->load->view('main', [
 			'title' => 'Give Out Station',
 			'content' => $content

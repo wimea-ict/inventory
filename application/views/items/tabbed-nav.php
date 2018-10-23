@@ -12,6 +12,9 @@
             <li <?= ($page == 'give-out-items') ? ' class="active"' : ''; ?>>
                 <a href="<?= site_url("items/give-out"); ?>">Give Out Items</a>
             </li>
+            <li <?= ($page == 'give-out-stations') ? ' class="active"' : ''; ?>>
+                <a href="<?= site_url("stations/give-out"); ?>">Give Out Stations</a>
+            </li>
         </ul>
     </div>
 </div>
